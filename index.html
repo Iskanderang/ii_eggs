@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Каталог - Лучшие нейросети</title>
+    <meta name="description" content="Каталог лучших нейросетей: ChatGPT, Midjourney, Stable Diffusion и другие AI инструменты">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --bg-white: rgba(255, 255, 255, 0.95);
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            padding-bottom: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background: var(--bg-white);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            will-change: transform;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .container {
+            padding: 20px;
+            min-height: 50vh;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .ai-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+        }
+
+        .ai-card {
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out backwards;
+            will-change: transform;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .ai-card:nth-child(n) {
+            animation-delay: calc(n * 0.05s);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ai-card:hover, .ai-card:active {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .ai-card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 12px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .ai-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .ai-card-category {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .ai-card-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            display: -webkit-box;
+            display: box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--border-color);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .modal-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .prompt-example {
+            background: #f8f8f8;
+            border-left: 3px solid var(--primary-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .modal-link {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 14px;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal-link:hover, .modal-link:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .price-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .price-badge.paid {
+            background: #FF9800;
+        }
+
+        .favorite-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .favorite-btn:active {
+            transform: scale(0.98);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid var(--border-color);
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: #999;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: white;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Улучшенная производительность */
+        .ai-card, .category-btn, .modal-link, .favorite-btn {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 AI Каталог</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Поиск нейросети..." autocomplete="off">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="categories" id="categories">
+            <button class="category-btn active" data-category="all">Все</button>
+            <button class="category-btn" data-category="text">📝 Текст</button>
+            <button class="category-btn" data-category="image">🎨 Изображения</button>
+            <button class="category-btn" data-category="video">🎬 Видео</button>
+            <button class="category-btn" data-category="audio">🎵 Аудио</button>
+            <button class="category-btn" data-category="code">💻 Код</button>
+            <button class="category-btn" data-category="3d">🎮 3D</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="ai-grid" id="aiGrid"></div>
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <h3>Ничего не найдено</h3>
+            <p>Попробуйте изменить поисковый запрос или категорию</p>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" data-section="home">
+            <span>🏠</span>
+            <span>Главная</span>
+        </div>
+        <div class="nav-item" data-section="favorites">
+            <span>⭐</span>
+            <span>Избранное</span>
+        </div>
+        <div class="nav-item" data-section="compare">
+            <span>📊</span>
+            <span>Сравнение</span>
+        </div>
+        <div class="nav-item" data-section="about">
+            <span>ℹ️</span>
+            <span>О проекте</span>
+        </div>
+    </div>
+
+    <script>
+        'use strict';
+        
+        // Кэширование DOM элементов
+        const elements = {
+            aiGrid: document.getElementById('aiGrid'),
+            emptyState: document.getElementById('emptyState'),
+            modal: document.getElementById('modal'),
+            modalBody: document.getElementById('modalBody'),
+            searchInput: document.getElementById('searchInput'),
+            categories: document.getElementById('categories'),
+            navItems: document.querySelectorAll('.nav-item'),
+            categoryBtns: document.querySelectorAll('.category-btn')
+        };
+
+        // Инициализация Telegram Web App
+        const tg = window.Telegram?.WebApp;
+        if (tg) {
+            tg.ready();
+            tg.expand();
+            
+            // Настройка кнопки "Назад"
+            tg.BackButton.onClick(() => {
+                if (elements.modal.classList.contains('active')) {
+                    closeModal();
+                } else {
+                    tg.close();
+                }
+            });
+        }
+
+        // Состояние приложения
+        const state = {
+            aiDatabase: [],
+            currentCategory: 'all',
+            searchQuery: '',
+            currentSection: 'home',
+            favorites: new Set(JSON.parse(localStorage.getItem('favorites') || '[]'))
+        };
+
+        // Загрузка данных
+        function loadDatabase() {
+            const savedData = localStorage.getItem('aiDatabase');
+            
+            if (savedData) {
+                try {
+                    state.aiDatabase = JSON.parse(savedData);
+                } catch (e) {
+                    console.error('Error parsing saved data:', e);
+                    loadDefaultDatabase();
+                }
+            } else {
+                loadDefaultDatabase();
+            }
+        }
+
+        // Загрузка дефолтной базы
+        function loadDefaultDatabase() {
+            state.aiDatabase = [
+                {
+                    id: 1,
+                    name: "ChatGPT",
+                    category: "text",
+                    icon: "💬",
+                    description: "Универсальный AI-ассистент для текста",
+                    fullDescription: "ChatGPT от OpenAI - самая популярная нейросеть для генерации текста, ответов на вопросы, написания кода и творческих задач. Поддерживает множество языков и может выполнять сложные задачи.",
+                    prompts: [
+                        "Напиши статью о квантовых компьютерах простым языком",
+                        "Создай план обучения Python для начинающих",
+                        "Проанализируй этот код и найди ошибки: [ваш код]"
+                    ],
+                    links: {
+                        website: "https://chat.openai.com",
+                        docs: "https://platform.openai.com/docs"
+                    },
+                    price: "Бесплатно / $20 месяц за GPT-4"
+                },
+                {
+                    id: 2,
+                    name: "Claude",
+                    category: "text",
+                    icon: "🧠",
+                    description: "AI с большим контекстом и анализом",
+                    fullDescription: "Claude от Anthropic - мощная нейросеть с огромным контекстным окном (до 100k токенов). Отлично подходит для анализа документов, написания кода и сложных рассуждений.",
+                    prompts: [
+                        "Проанализируй этот PDF документ и выдели ключевые моменты",
+                        "Рефакторинг этого кода с пояснениями: [код]",
+                        "Сравни эти два подхода к решению задачи"
+                    ],
+                    links: {
+                        website: "https://claude.ai",
+                        docs: "https://docs.anthropic.com"
+                    },
+                    price: "Бесплатно / $20 месяц за Claude Pro"
+                },
+                {
+                    id: 3,
+                    name: "Midjourney",
+                    category: "image",
+                    icon: "🎨",
+                    description: "Создание фотореалистичных изображений",
+                    fullDescription: "Midjourney - лидер в создании художественных и фотореалистичных изображений. Работает через Discord, поддерживает различные стили и настройки.",
+                    prompts: [
+                        "portrait of a cyberpunk samurai, neon lights, 8k, photorealistic --v 6",
+                        "minimalist logo design for tech startup, vector style --q 2",
+                        "ethereal forest landscape, morning mist, cinematic lighting --ar 16:9"
+                    ],
+                    links: {
+                        website: "https://midjourney.com",
+                        discord: "https://discord.gg/midjourney"
+                    },
+                    price: "$10-60 в месяц"
+                },
+                {
+                    id: 4,
+                    name: "DALL-E 3",
+                    category: "image",
+                    icon: "🖼️",
+                    description: "Генерация изображений от OpenAI",
+                    fullDescription: "DALL-E 3 - нейросеть от OpenAI для создания изображений по текстовому описанию. Отлично понимает сложные запросы и создает точные изображения.",
+                    prompts: [
+                        "Фотореалистичный портрет кота-астронавта в скафандре",
+                        "Логотип для кофейни в стиле минимализм",
+                        "Пейзаж инопланетной планеты с двумя солнцами"
+                    ],
+                    links: {
+                        website: "https://openai.com/dall-e-3",
+                        api: "https://platform.openai.com/docs/guides/images"
+                    },
+                    price: "Через ChatGPT Plus или API"
+                },
+                {
+                    id: 5,
+                    name: "Stable Diffusion",
+                    category: "image",
+                    icon: "🎯",
+                    description: "Открытая модель для генерации изображений",
+                    fullDescription: "Stable Diffusion - открытая модель для генерации изображений. Можно запускать локально или использовать через различные сервисы. Поддерживает fine-tuning.",
+                    prompts: [
+                        "(masterpiece, best quality), 1girl, sakura trees, sunset",
+                        "product photography of sneakers, white background, studio lighting",
+                        "oil painting of mountain landscape, Bob Ross style"
+                    ],
+                    links: {
+                        website: "https://stability.ai",
+                        github: "https://github.com/CompVis/stable-diffusion"
+                    },
+                    price: "Бесплатно (локально) / Платные сервисы"
+                },
+                {
+                    id: 6,
+                    name: "Runway Gen-2",
+                    category: "video",
+                    icon: "🎬",
+                    description: "Генерация видео из текста и изображений",
+                    fullDescription: "Runway Gen-2 - передовая нейросеть для создания видео из текстовых описаний или изображений. Поддерживает различные стили и эффекты.",
+                    prompts: [
+                        "Плавный полет над футуристическим городом на закате",
+                        "Превратить это изображение в анимацию с движением камеры",
+                        "Морские волны разбиваются о скалы, замедленная съемка"
+                    ],
+                    links: {
+                        website: "https://runwayml.com",
+                        docs: "https://docs.runwayml.com"
+                    },
+                    price: "$12-76 в месяц"
+                },
+                {
+                    id: 7,
+                    name: "Pika Labs",
+                    category: "video",
+                    icon: "📹",
+                    description: "AI видео-генератор нового поколения",
+                    fullDescription: "Pika Labs - инновационная платформа для создания и редактирования видео с помощью AI. Простой интерфейс и качественные результаты.",
+                    prompts: [
+                        "Анимировать персонажа: идущий робот в стиле пиксель-арт",
+                        "3D камера вращается вокруг объекта",
+                        "Морфинг между двумя изображениями за 3 секунды"
+                    ],
+                    links: {
+                        website: "https://pika.art",
+                        discord: "https://discord.gg/pika"
+                    },
+                    price: "Бесплатно / Платные планы"
+                },
+                {
+                    id: 8,
+                    name: "ElevenLabs",
+                    category: "audio",
+                    icon: "🎙️",
+                    description: "Реалистичный синтез голоса",
+                    fullDescription: "ElevenLabs - лучшая нейросеть для синтеза речи и клонирования голоса. Поддерживает множество языков и эмоций.",
+                    prompts: [
+                        "Озвучить текст голосом диктора новостей",
+                        "Создать аудиокнигу с разными голосами для персонажей",
+                        "Клонировать голос из 5-минутной записи"
+                    ],
+                    links: {
+                        website: "https://elevenlabs.io",
+                        api: "https://api.elevenlabs.io/docs"
+                    },
+                    price: "Бесплатно (10k символов) / $5-330 в месяц"
+                },
+                {
+                    id: 9,
+                    name: "Suno AI",
+                    category: "audio",
+                    icon: "🎵",
+                    description: "Создание музыки и песен",
+                    fullDescription: "Suno AI - революционная нейросеть для создания полноценных песен с вокалом и музыкой по текстовому описанию.",
+                    prompts: [
+                        "Энергичная рок-песня о путешествии в космос",
+                        "Спокойная lo-fi мелодия для учебы",
+                        "Эпическая оркестровая тема для фильма"
+                    ],
+                    links: {
+                        website: "https://suno.ai",
+                        app: "https://app.suno.ai"
+                    },
+                    price: "Бесплатно (5 песен/день) / $8-24 в месяц"
+                },
+                {
+                    id: 10,
+                    name: "GitHub Copilot",
+                    category: "code",
+                    icon: "💻",
+                    description: "AI-помощник для программирования",
+                    fullDescription: "GitHub Copilot - AI-ассистент для написания кода. Интегрируется в IDE и предлагает целые функции и решения.",
+                    prompts: [
+                        "// Функция для сортировки массива объектов по дате",
+                        "# Класс для работы с API Twitter",
+                        "/* Компонент React для отображения графика */"
+                    ],
+                    links: {
+                        website: "https://github.com/features/copilot",
+                        docs: "https://docs.github.com/copilot"
+                    },
+                    price: "$10-19 в месяц"
+                },
+                {
+                    id: 11,
+                    name: "Codeium",
+                    category: "code",
+                    icon: "⚡",
+                    description: "Бесплатный AI для кода",
+                    fullDescription: "Codeium - бесплатная альтернатива GitHub Copilot. Поддерживает 70+ языков программирования и все популярные IDE.",
+                    prompts: [
+                        "Автодополнение кода в реальном времени",
+                        "Генерация unit-тестов для функции",
+                        "Рефакторинг и оптимизация кода"
+                    ],
+                    links: {
+                        website: "https://codeium.com",
+                        docs: "https://codeium.com/docs"
+                    },
+                    price: "Бесплатно / $10+ для команд"
+                },
+                {
+                    id: 12,
+                    name: "Spline AI",
+                    category: "3d",
+                    icon: "🎮",
+                    description: "3D дизайн с помощью AI",
+                    fullDescription: "Spline AI - создание 3D объектов и сцен через текстовые запросы. Идеально для веб-дизайна и прототипирования.",
+                    prompts: [
+                        "Создать 3D модель футуристического автомобиля",
+                        "Низкополигональный лес для игры",
+                        "Анимированный 3D логотип компании"
+                    ],
+                    links: {
+                        website: "https://spline.design",
+                        docs: "https://docs.spline.design"
+                    },
+                    price: "Бесплатно / $7-24 в месяц"
+                },
+                {
+                    id: 13,
+                    name: "Gemini",
+                    category: "text",
+                    icon: "✨",
+                    description: "Мультимодальный AI от Google",
+                    fullDescription: "Gemini - новейшая разработка Google с поддержкой текста, изображений, видео и аудио. Отличная интеграция с сервисами Google.",
+                    prompts: [
+                        "Проанализировать это изображение и описать что на нем",
+                        "Создать презентацию на основе этого документа",
+                        "Найти информацию в интернете и обобщить"
+                    ],
+                    links: {
+                        website: "https://gemini.google.com",
+                        api: "https://ai.google.dev"
+                    },
+                    price: "Бесплатно / Платные API"
+                },
+                {
+                    id: 14,
+                    name: "Perplexity",
+                    category: "text",
+                    icon: "🔍",
+                    description: "AI-поисковик с актуальными данными",
+                    fullDescription: "Perplexity - AI-поисковая система, которая предоставляет точные ответы с источниками. Всегда актуальная информация из интернета.",
+                    prompts: [
+                        "Последние новости о квантовых компьютерах",
+                        "Сравнение iPhone 15 Pro и Samsung S24 Ultra",
+                        "Текущий курс криптовалют с анализом"
+                    ],
+                    links: {
+                        website: "https://perplexity.ai",
+                        mobile: "https://perplexity.ai/app"
+                    },
+                    price: "Бесплатно / $20 в месяц Pro"
+                },
+                {
+                    id: 15,
+                    name: "Leonardo AI",
+                    category: "image",
+                    icon: "🖌️",
+                    description: "Генерация игровых ассетов и артов",
+                    fullDescription: "Leonardo AI специализируется на создании игровой графики, концепт-артов и текстур. Поддерживает обучение собственных моделей.",
+                    prompts: [
+                        "Fantasy sword, game asset, transparent background",
+                        "Pixel art character sprite sheet, 8 animations",
+                        "Sci-fi environment concept art, detailed"
+                    ],
+                    links: {
+                        website: "https://leonardo.ai",
+                        community: "https://discord.gg/leonardo"
+                    },
+                    price: "Бесплатно (150 токенов/день) / $10-48 в месяц"
+                },
+                {
+                    id: 16,
+                    name: "Kandinsky",
+                    category: "image",
+                    icon: "🎭",
+                    description: "Российская нейросеть для генерации изображений",
+                    fullDescription: "Kandinsky от Сбера - мощная нейросеть для создания изображений, которая отлично понимает русский язык. Поддерживает различные стили, от фотореализма до аниме.",
+                    prompts: [
+                        "Кот в космосе, стиль советского плаката",
+                        "Логотип для кофейни 'Уютный уголок', минимализм",
+                        "Девушка в русском народном костюме, аниме стиль"
+                    ],
+                    links: {
+                        website: "https://fusionbrain.ai",
+                        telegram: "https://t.me/kandinsky21_bot"
+                    },
+                    price: "Бесплатно через Telegram / API по запросу"
+                }
+            ];
+            
+            localStorage.setItem('aiDatabase', JSON.stringify(state.aiDatabase));
+        }
+
+        // Оптимизированная функция рендеринга
+        function renderAICards() {
+            let filteredAI = state.aiDatabase;
+            
+            // Применение фильтров
+            if (state.currentCategory !== 'all') {
+                filteredAI = filteredAI.filter(ai => ai.category === state.currentCategory);
+            }
+            
+            if (state.searchQuery) {
+                const query = state.searchQuery.toLowerCase();
+                filteredAI = filteredAI.filter(ai => 
+                    ai.name.toLowerCase().includes(query) ||
+                    ai.description.toLowerCase().includes(query)
+                );
+            }
+            
+            if (state.currentSection === 'favorites') {
+                filteredAI = filteredAI.filter(ai => state.favorites.has(ai.id));
+            }
+            
+            // Рендеринг
+            if (filteredAI.length === 0) {
+                elements.aiGrid.innerHTML = '';
+                elements.emptyState.style.display = 'block';
+                return;
+            }
+            
+            elements.emptyState.style.display = 'none';
+            
+            // Используем DocumentFragment для оптимизации
+            const fragment = document.createDocumentFragment();
+            
+            filteredAI.forEach((ai, index) => {
+                const card = document.createElement('div');
+                card.className = 'ai-card';
+                card.style.animationDelay = `${index * 0.05}s`;
+                card.onclick = () => openModal(ai.id);
+                
+                card.innerHTML = `
+                    <div class="ai-card-icon">${ai.icon}</div>
+                    <h3>${ai.name}</h3>
+                    <div class="ai-card-category">${getCategoryName(ai.category)}</div>
+                    <p class="ai-card-description">${ai.description}</p>
+                `;
+                
+                fragment.appendChild(card);
+            });
+            
+            elements.aiGrid.innerHTML = '';
+            elements.aiGrid.appendChild(fragment);
+        }
+
+        // Получить название категории
+        const categoryNames = {
+            'text': 'Текст',
+            'image': 'Изображения',
+            'video': 'Видео',
+            'audio': 'Аудио',
+            'code': 'Код',
+            '3d': '3D'
+        };
+        
+        function getCategoryName(category) {
+            return categoryNames[category] || category;
+        }
+
+        // Открыть модальное окно
+        function openModal(id) {
+            const ai = state.aiDatabase.find(item => item.id === id);
+            if (!ai) return;
+            
+            const isPaid = !ai.price.toLowerCase().includes('бесплатно');
+            const isFavorite = state.favorites.has(ai.id);
+            
+            elements.modalBody.innerHTML = `
+                <div class="modal-icon">${ai.icon}</div>
+                <h2>${ai.name}</h2>
+                <div class="modal-category">${getCategoryName(ai.category)}</div>
+                
+                <div class="modal-section">
+                    <h3>📝 Описание</h3>
+                    <p>${ai.fullDescription}</p>
+                </div>
+                
+                <div class="price-badge ${isPaid ? 'paid' : ''}">
+                    💰 ${ai.price}
+                </div>
+                
+                <div class="modal-section">
+                    <h3>💡 Примеры промптов</h3>
+                    ${ai.prompts.map(prompt => `
+                        <div class="prompt-example">${prompt}</div>
+                    `).join('')}
+                </div>
+                
+                <div class="modal-section">
+                    <h3>🔗 Ссылки</h3>
+                    <div class="modal-links">
+                        ${Object.entries(ai.links).map(([key, url]) => `
+                            <a href="${url}" target="_blank" rel="noopener" class="modal-link">
+                                ${getLinkIcon(key)}
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <button onclick="toggleFavorite(${ai.id})" class="favorite-btn">
+                    ${isFavorite ? '❤️ Удалить из избранного' : '🤍 Добавить в избранное'}
+                </button>
+            `;
+            
+            elements.modal.classList.add('active');
+            if (tg) tg.BackButton.show();
+        }
+
+        // Получить иконку для ссылки
+        function getLinkIcon(key) {
+            const icons = {
+                'website': '🌐 Сайт',
+                'docs': '📚 Документация',
+                'api': '⚙️ API',
+                'discord': '💬 Discord',
+                'github': '📦 GitHub',
+                'telegram': '✈️ Telegram',
+                'mobile': '📱 Приложение',
+                'community': '👥 Сообщество',
+                'app': '🚀 Приложение'
+            };
+            return icons[key] || key;
+        }
+
+        // Закрыть модальное окно
+        function closeModal() {
+            elements.modal.classList.remove('active');
+            if (tg) tg.BackButton.hide();
+        }
+
+        // Переключение избранного
+        function toggleFavorite(id) {
+            if (state.favorites.has(id)) {
+                state.favorites.delete(id);
+            } else {
+                state.favorites.add(id);
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify([...state.favorites]));
+            
+            if (state.currentSection === 'favorites') {
+                renderAICards();
+            }
+            
+            // Обновляем кнопку
+            const btn = elements.modalBody.querySelector('.favorite-btn');
+            if (btn) {
+                btn.innerHTML = state.favorites.has(id) 
+                    ? '❤️ Удалить из избранного' 
+                    : '🤍 Добавить в избранное';
+            }
+        }
+
+        // Обработчики событий с делегированием
+        elements.modal.addEventListener('click', (e) => {
+            if (e.target === elements.modal) {
+                closeModal();
+            }
+        });
+
+        // Дебаунс для поиска
+        let searchTimeout;
+        elements.searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                state.searchQuery = e.target.value;
+                renderAICards();
+            }, 300);
+        });
+
+        // Обработчики категорий
+        elements.categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                elements.categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                state.currentCategory = this.dataset.category;
+                renderAICards();
+            });
+        });
+
+        // Обработчики навигации
+        elements.navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                elements.navItems.forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+                
+                const section = this.dataset.section;
+                state.currentSection = section;
+                
+                if (section === 'home' || section === 'favorites') {
+                    renderAICards();
+                } else if (section === 'compare') {
+                    elements.aiGrid.innerHTML = `
+                        <div class="empty-state">
+                            <h3>📊 Раздел в разработке</h3>
+                            <p>Функция сравнения появится в ближайшем обновлении</p>
+                        </div>
+                    `;
+                } else if (section === 'about') {
+                    elements.aiGrid.innerHTML = `
+                        <div class="empty-state" style="color: #333; background: white; padding: 20px; border-radius: 16px;">
+                            <h3>AI Каталог v1.0</h3>
+                            <p>Лучшие нейросети в одном месте</p>
+                            <p style="margin-top: 10px;">© 2024</p>
+                        </div>
+                    `;
+                }
+            });
+        });
+
+        // Инициализация
+        loadDatabase();
+        renderAICards();
+
+        // Экспорт функций в глобальную область для onclick
+        window.closeModal = closeModal;
+        window.toggleFavorite = toggleFavorite;
+    </script>
+</body>
+</html>
