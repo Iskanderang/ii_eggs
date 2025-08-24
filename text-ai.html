@@ -24,6 +24,8 @@
             --text-secondary: #94A3B8;
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --accent: #8B5FBF;
+            --success: #10B981;
+            --warning: #F59E0B;
         }
 
         body {
@@ -32,6 +34,7 @@
             color: var(--text-primary);
             min-height: 100vh;
             position: relative;
+            overflow-x: hidden;
         }
 
         /* Animated Background */
@@ -67,6 +70,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(10, 14, 39, 0.8);
         }
 
         .back-btn {
@@ -136,15 +140,28 @@
         .ai-card {
             background: var(--surface);
             border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ai-card.expanded {
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .ai-card-header {
             padding: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .ai-card:not(.expanded) .ai-card-header:hover {
+            background: var(--surface-light);
         }
 
         .ai-card::before {
@@ -159,13 +176,8 @@
             transition: opacity 0.3s ease;
         }
 
-        .ai-card:hover {
-            transform: translateY(-2px);
-            background: var(--surface-light);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        .ai-card:hover::before {
+        .ai-card:hover::before,
+        .ai-card.expanded::before {
             opacity: 1;
         }
 
@@ -206,11 +218,129 @@
             opacity: 0.5;
             transition: all 0.3s ease;
             color: var(--primary);
+            transform: rotate(0deg);
         }
 
-        .ai-card:hover .ai-arrow {
+        .ai-card.expanded .ai-arrow {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+
+        .ai-card:not(.expanded):hover .ai-arrow {
             opacity: 1;
             transform: translateX(5px);
+        }
+
+        /* Expanded Content */
+        .ai-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--surface-light);
+        }
+
+        .ai-card.expanded .ai-content {
+            max-height: 800px;
+        }
+
+        .ai-content-inner {
+            padding: 30px;
+            display: grid;
+            gap: 25px;
+        }
+
+        /* Content Blocks */
+        .content-block {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .block-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .block-title .icon {
+            font-size: 18px;
+        }
+
+        .block-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* Use Button */
+        .use-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .use-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Prompt Block */
+        .prompt-block {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .prompt-text {
+            background: var(--background);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .copy-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: var(--warning);
         }
 
         /* Mobile Styles */
@@ -234,7 +364,7 @@
                 padding: 20px 15px;
             }
 
-            .ai-card {
+            .ai-card-header {
                 padding: 15px;
                 gap: 12px;
             }
@@ -252,10 +382,19 @@
             .ai-description {
                 font-size: 13px;
             }
+
+            .ai-content-inner {
+                padding: 20px 15px;
+                gap: 20px;
+            }
+
+            .content-block {
+                padding: 15px;
+            }
         }
 
         @media (max-width: 480px) {
-            .ai-card {
+            .ai-card-header {
                 padding: 12px;
                 gap: 10px;
             }
@@ -296,31 +435,147 @@
     <main class="container">
         <div class="ai-cards">
             <!-- ChatGPT -->
-            <div class="ai-card" onclick="openAI('chatgpt')">
-                <div class="ai-logo" style="background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%);">
-                    GPT
+            <div class="ai-card" id="chatgpt-card">
+                <div class="ai-card-header" onclick="toggleCard('chatgpt')">
+                    <div class="ai-logo" style="background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%);">
+                        GPT
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">ChatGPT</h3>
+                        <p class="ai-description">Самая популярная языковая модель от OpenAI</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
                 </div>
-                <div class="ai-info">
-                    <h3 class="ai-name">ChatGPT</h3>
-                    <p class="ai-description">Самая популярная языковая модель от OpenAI</p>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <!-- Use Button Block -->
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://chat.openai.com" target="_blank" class="use-btn">
+                                <span>Открыть ChatGPT</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Description Block -->
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                ChatGPT — самый известный AI-чат для решения текстовых задач. Отлично подходит для написания текстов, переводов, анализа, программирования и общения. Имеет бесплатную версию и платную GPT-4.
+                            </p>
+                        </div>
+
+                        <!-- Lifehack Block -->
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Универсальный промт для получения качественных ответов от ChatGPT:
+                            </p>
+                            <div class="prompt-text">Ты эксперт в [ТВОЯ ТЕМА]. Мне нужно [ТВОЯ ЗАДАЧА]. 
+
+Учти следующее:
+- Будь конкретным и детальным
+- Приведи примеры где возможно
+- Структурируй ответ для удобства чтения
+
+Моя задача: [ОПИШИ ЗАДАЧУ ПОДРОБНО]</div>
+                            <button class="copy-btn" onclick="copyPrompt('chatgpt')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
 
             <!-- Claude -->
-            <div class="ai-card" onclick="openAI('claude')">
-                <div class="ai-logo" style="background: linear-gradient(135deg, #CC785C 0%, #9D5B42 100%);">
-                    C
+            <div class="ai-card" id="claude-card">
+                <div class="ai-card-header" onclick="toggleCard('claude')">
+                    <div class="ai-logo" style="background: linear-gradient(135deg, #CC785C 0%, #9D5B42 100%);">
+                        C
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">Claude</h3>
+                        <p class="ai-description">Безопасный и полезный AI-ассистент от Anthropic</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
                 </div>
-                <div class="ai-info">
-                    <h3 class="ai-name">Claude</h3>
-                    <p class="ai-description">Безопасный и полезный AI-ассистент от Anthropic</p>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <!-- Use Button Block -->
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://claude.ai" target="_blank" class="use-btn">
+                                <span>Открыть Claude</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Description Block -->
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                Claude — AI-ассистент от Anthropic, который отличается высоким уровнем безопасности и этичности. Особенно хорош в анализе документов, длинных текстов и творческих задачах. Умеет работать с файлами.
+                            </p>
+                        </div>
+
+                        <!-- Lifehack Block -->
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Эффективный промт для работы с Claude:
+                            </p>
+                            <div class="prompt-text">Привет! Я работаю над [ТВОЙ ПРОЕКТ/ЗАДАЧА]. 
+
+Мне нужна твоя помощь с [КОНКРЕТНАЯ ЗАДАЧА].
+
+Контекст:
+- [Опиши ситуацию]
+- [Укажи ограничения]
+- [Что уже попробовал]
+
+Ожидаемый результат: [ОПИШИ ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
+
+Пожалуйста, будь максимально практичным и конкретным.</div>
+                            <button class="copy-btn" onclick="copyPrompt('claude')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
         </div>
     </main>
@@ -330,19 +585,72 @@
             window.history.back();
         }
 
-        function openAI(aiName) {
-            // Здесь будет переход на конкретную нейросеть
-            console.log(`Открываем ${aiName}`);
+        function toggleCard(cardName) {
+            const card = document.getElementById(cardName + '-card');
+            const isExpanded = card.classList.contains('expanded');
             
-            // Примеры ссылок (замените на реальные)
-            const links = {
-                'chatgpt': 'https://chat.openai.com',
-                'claude': 'https://claude.ai'
-            };
+            // Закрыть все карточки
+            document.querySelectorAll('.ai-card').forEach(c => c.classList.remove('expanded'));
             
-            if (links[aiName]) {
-                window.open(links[aiName], '_blank');
+            // Если карточка не была открыта, открываем её
+            if (!isExpanded) {
+                card.classList.add('expanded');
+                // Плавный скролл к карточке
+                setTimeout(() => {
+                    card.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
             }
+        }
+
+        const prompts = {
+            'chatgpt': `Ты эксперт в [ТВОЯ ТЕМА]. Мне нужно [ТВОЯ ЗАДАЧА]. 
+
+Учти следующее:
+- Будь конкретным и детальным
+- Приведи примеры где возможно
+- Структурируй ответ для удобства чтения
+
+Моя задача: [ОПИШИ ЗАДАЧУ ПОДРОБНО]`,
+
+            'claude': `Привет! Я работаю над [ТВОЙ ПРОЕКТ/ЗАДАЧА]. 
+
+Мне нужна твоя помощь с [КОНКРЕТНАЯ ЗАДАЧА].
+
+Контекст:
+- [Опиши ситуацию]
+- [Укажи ограничения]
+- [Что уже попробовал]
+
+Ожидаемый результат: [ОПИШИ ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
+
+Пожалуйста, будь максимально практичным и конкретным.`
+        };
+
+        function copyPrompt(aiName) {
+            const prompt = prompts[aiName];
+            const button = event.target.closest('.copy-btn');
+            
+            navigator.clipboard.writeText(prompt).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = `
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Скопировано!
+                `;
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                alert('Не удалось скопировать промт');
+            });
         }
 
         // Анимация появления карточек
@@ -358,6 +666,20 @@
                     card.style.transform = 'translateY(0)';
                 }, index * 150);
             });
+        });
+
+        // Закрытие карточек при клике вне их
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.ai-card')) {
+                document.querySelectorAll('.ai-card').forEach(c => c.classList.remove('expanded'));
+            }
+        });
+
+        // Закрытие карточек при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.ai-card').forEach(c => c.classList.remove('expanded'));
+            }
         });
     </script>
 </body>
