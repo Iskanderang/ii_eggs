@@ -437,8 +437,9 @@
             <!-- ChatGPT -->
             <div class="ai-card" id="chatgpt-card">
                 <div class="ai-card-header" onclick="toggleCard('chatgpt')">
-                    <div class="ai-logo" style="background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%);">
-                        GPT
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png" 
+                             alt="ChatGPT" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                     </div>
                     <div class="ai-info">
                         <h3 class="ai-name">ChatGPT</h3>
@@ -451,7 +452,6 @@
                 
                 <div class="ai-content">
                     <div class="ai-content-inner">
-                        <!-- Use Button Block -->
                         <div class="content-block">
                             <h4 class="block-title">
                                 <span class="icon">🚀</span>
@@ -465,25 +465,23 @@
                             </a>
                         </div>
 
-                        <!-- Description Block -->
                         <div class="content-block">
                             <h4 class="block-title">
                                 <span class="icon">📝</span>
                                 Описание
                             </h4>
                             <p class="block-description">
-                                ChatGPT — самый известный AI-чат для решения текстовых задач. Отлично подходит для написания текстов, переводов, анализа, программирования и общения. Имеет бесплатную версию и платную GPT-4.
+                                Самый известный AI-чат для решения текстовых задач. Отлично подходит для написания, переводов, программирования и анализа. Имеет бесплатную версию GPT-3.5 и платную GPT-4.
                             </p>
                         </div>
 
-                        <!-- Lifehack Block -->
                         <div class="content-block prompt-block">
                             <h4 class="block-title">
                                 <span class="icon">💡</span>
                                 Лайфхак по использованию
                             </h4>
                             <p class="block-description">
-                                Универсальный промт для получения качественных ответов от ChatGPT:
+                                Универсальный промт для получения качественных ответов:
                             </p>
                             <div class="prompt-text">Ты эксперт в [ТВОЯ ТЕМА]. Мне нужно [ТВОЯ ЗАДАЧА]. 
 
@@ -504,14 +502,367 @@
                 </div>
             </div>
 
+            <!-- DeepSeek -->
+            <div class="ai-card" id="deepseek-card">
+                <div class="ai-card-header" onclick="toggleCard('deepseek')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://alice.dev/wp-content/uploads/2025/01/deepseek-ai-icon-seeklogo.png" 
+                             alt="DeepSeek" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">DeepSeek</h3>
+                        <p class="ai-description">Мощная китайская модель с акцентом на программирование</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://chat.deepseek.com" target="_blank" class="use-btn">
+                                <span>Открыть DeepSeek</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                Китайская AI-модель с открытым исходным кодом. Особенно сильна в программировании, математике и логических задачах. Быстрая и часто бесплатная альтернativa GPT-4.
+                            </p>
+                        </div>
+
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Промт для максимальной точности в технических задачах:
+                            </p>
+                            <div class="prompt-text">Задача: [ОПИШИ ЗАДАЧУ]
+
+Требования:
+1. Пошаговое решение
+2. Объяснение каждого этапа
+3. Проверка результата
+4. Альтернативные подходы (если есть)
+
+Контекст: [ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ]
+
+Ожидаю максимально точный и проработанный ответ.</div>
+                            <button class="copy-btn" onclick="copyPrompt('deepseek')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mixtral -->
+            <div class="ai-card" id="mixtral-card">
+                <div class="ai-card-header" onclick="toggleCard('mixtral')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/mistral-color.png" 
+                             alt="Mixtral" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">Mixtral</h3>
+                        <p class="ai-description">Открытая модель от Mistral AI с высокой производительностью</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://chat.mistral.ai" target="_blank" class="use-btn">
+                                <span>Открыть Mixtral</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                Европейская AI-модель от Mistral AI. Сбалансированная производительность в разных задачах. Хорошо работает с многоязычными запросами и творческими заданиями.
+                            </p>
+                        </div>
+
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Промт для творческих и аналитических задач:
+                            </p>
+                            <div class="prompt-text">Роль: [УКАЖИ РОЛЬ - например "креативный писатель" или "аналитик"]
+
+Задача: [ТВОЯ ЗАДАЧА]
+
+Стиль: [УКАЖИ СТИЛЬ - формальный/неформальный/творческий]
+
+Аудитория: [ДЛЯ КОГО ДЕЛАЕШЬ]
+
+Дополнительные требования:
+- [ТРЕБОВАНИЕ 1]
+- [ТРЕБОВАНИЕ 2]
+
+Приступай!</div>
+                            <button class="copy-btn" onclick="copyPrompt('mixtral')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Qwen -->
+            <div class="ai-card" id="qwen-card">
+                <div class="ai-card-header" onclick="toggleCard('qwen')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Qwen_logo.svg/200px-Qwen_logo.svg.png?20250327025131" 
+                             alt="Qwen" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">Qwen</h3>
+                        <p class="ai-description">Многоязычная модель от Alibaba для глобальных задач</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://huggingface.co/spaces/Qwen/Qwen2.5-72B-Instruct" target="_blank" class="use-btn">
+                                <span>Открыть Qwen</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                Китайская модель от Alibaba с отличной поддержкой множества языков. Сильна в переводах, культурных контекстах и работе с азиатскими языками. Хорошо понимает бизнес-задачи.
+                            </p>
+                        </div>
+
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Промт для многоязычных и бизнес-задач:
+                            </p>
+                            <div class="prompt-text">Контекст: [ОПИШИ СИТУАЦИЮ/БИЗНЕС-ЗАДАЧУ]
+
+Цель: [ЧТО НУЖНО ДОСТИЧЬ]
+
+Параметры:
+- Язык ответа: [УКАЖИ ЯЗЫК]
+- Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ]
+- Формат: [КАК ПОДАТЬ ИНФОРМАЦИЮ]
+
+Учти культурные особенности и местную специфику.
+
+Задача: [ДЕТАЛЬНОЕ ОПИСАНИЕ]</div>
+                            <button class="copy-btn" onclick="copyPrompt('qwen')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Claude -->
             <div class="ai-card" id="claude-card">
                 <div class="ai-card-header" onclick="toggleCard('claude')">
-                    <div class="ai-logo" style="background: linear-gradient(135deg, #CC785C 0%, #9D5B42 100%);">
-                        C
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/claude-ai-icon.png" 
+                             alt="Claude" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                     </div>
                     <div class="ai-info">
                         <h3 class="ai-name">Claude</h3>
+                        <p class="ai-description">Безопасный и полезный AI-ассистент от Anthropic</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://claude.ai" target="_blank" class="use-btn">
+                                <span>Открыть Claude</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                AI-ассистент от Anthropic с высоким уровнем безопасности. Отличается в анализе документов, длинных текстов и этичном подходе. Умеет работать с файлами и изображениями.
+                            </p>
+                        </div>
+
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Промт для глубокого анализа и работы с документами:
+                            </p>
+                            <div class="prompt-text">Привет! Я работаю над [ПРОЕКТ/ЗАДАЧА]. 
+
+Мне нужна помощь с [КОНКРЕТНАЯ ЗАДАЧА].
+
+Контекст:
+- Текущая ситуация: [ОПИШИ]
+- Ограничения: [УКАЖИ ЕСЛИ ЕСТЬ]
+- Что уже пробовал: [ПРЕДЫДУЩИЕ ПОПЫТКИ]
+
+Ожидаемый результат: [ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
+
+Будь максимально практичным и подробным.</div>
+                            <button class="copy-btn" onclick="copyPrompt('claude')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grok -->
+            <div class="ai-card" id="grok-card">
+                <div class="ai-card-header" onclick="toggleCard('grok')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://images.seeklogo.com/logo-png/61/2/grok-logo-png_seeklogo-613403.png" 
+                             alt="Grok" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">Grok</h3>
+                        <p class="ai-description">AI от xAI с юмором и доступом к данным X (Twitter)</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">🚀</span>
+                                Использовать
+                            </h4>
+                            <a href="https://grok.com" target="_blank" class="use-btn">
+                                <span>Открыть Grok</span>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="content-block">
+                            <h4 class="block-title">
+                                <span class="icon">📝</span>
+                                Описание
+                            </h4>
+                            <p class="block-description">
+                                AI-ассистент от xAI (Илон Маск) с уникальной личностью и чувством юмора. Имеет доступ к актуальным данным из X (Twitter) и может отвечать на вопросы о текущих событиях.
+                            </p>
+                        </div>
+
+                        <div class="content-block prompt-block">
+                            <h4 class="block-title">
+                                <span class="icon">💡</span>
+                                Лайфхак по использованию
+                            </h4>
+                            <p class="block-description">
+                                Промт для получения актуальной информации с юмором:
+                            </p>
+                            <div class="prompt-text">Эй, Grok! Мне нужна твоя помощь с [ТЕМА/ЗАДАЧА].
+
+Что я хочу узнать:
+- [ОСНОВНОЙ ВОПРОС]
+- [ДОПОЛНИТЕЛЬНЫЕ ДЕТАЛИ]
+
+Можешь ли ты:
+1. Дать актуальную информацию
+2. Добавить свое мнение/взгляд
+3. Не забыть про юмор, если уместно
+
+Интересны как факты, так и твои инсайты!</div>
+                            <button class="copy-btn" onclick="copyPrompt('grok')">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                Копировать промт
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>name">Claude</h3>
                         <p class="ai-description">Безопасный и полезный AI-ассистент от Anthropic</p>
                     </div>
                     <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -615,18 +966,70 @@
 
 Моя задача: [ОПИШИ ЗАДАЧУ ПОДРОБНО]`,
 
-            'claude': `Привет! Я работаю над [ТВОЙ ПРОЕКТ/ЗАДАЧА]. 
+            'deepseek': `Задача: [ОПИШИ ЗАДАЧУ]
 
-Мне нужна твоя помощь с [КОНКРЕТНАЯ ЗАДАЧА].
+Требования:
+1. Пошаговое решение
+2. Объяснение каждого этапа
+3. Проверка результата
+4. Альтернативные подходы (если есть)
+
+Контекст: [ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ]
+
+Ожидаю максимально точный и проработанный ответ.`,
+
+            'mixtral': `Роль: [УКАЖИ РОЛЬ - например "креативный писатель" или "аналитик"]
+
+Задача: [ТВОЯ ЗАДАЧА]
+
+Стиль: [УКАЖИ СТИЛЬ - формальный/неформальный/творческий]
+
+Аудитория: [ДЛЯ КОГО ДЕЛАЕШЬ]
+
+Дополнительные требования:
+- [ТРЕБОВАНИЕ 1]
+- [ТРЕБОВАНИЕ 2]
+
+Приступай!`,
+
+            'qwen': `Контекст: [ОПИШИ СИТУАЦИЮ/БИЗНЕС-ЗАДАЧУ]
+
+Цель: [ЧТО НУЖНО ДОСТИЧЬ]
+
+Параметры:
+- Язык ответа: [УКАЖИ ЯЗЫК]
+- Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ]
+- Формат: [КАК ПОДАТЬ ИНФОРМАЦИЮ]
+
+Учти культурные особенности и местную специфику.
+
+Задача: [ДЕТАЛЬНОЕ ОПИСАНИЕ]`,
+
+            'claude': `Привет! Я работаю над [ПРОЕКТ/ЗАДАЧА]. 
+
+Мне нужна помощь с [КОНКРЕТНАЯ ЗАДАЧА].
 
 Контекст:
-- [Опиши ситуацию]
-- [Укажи ограничения]
-- [Что уже попробовал]
+- Текущая ситуация: [ОПИШИ]
+- Ограничения: [УКАЖИ ЕСЛИ ЕСТЬ]
+- Что уже пробовал: [ПРЕДЫДУЩИЕ ПОПЫТКИ]
 
-Ожидаемый результат: [ОПИШИ ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
+Ожидаемый результат: [ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
 
-Пожалуйста, будь максимально практичным и конкретным.`
+Будь максимально практичным и подробным.`,
+
+            'grok': `Эй, Grok! Мне нужна твоя помощь с [ТЕМА/ЗАДАЧА].
+
+Что я хочу узнать:
+- [ОСНОВНОЙ ВОПРОС]
+- [ДОПОЛНИТЕЛЬНЫЕ ДЕТАЛИ]
+
+Можешь ли ты:
+1. Дать актуальную информацию
+2. Добавить свое мнение/взгляд
+3. Не забыть про юмор, если уместно
+
+Интересны как факты, так и твои инсайты!`
         };
 
         function copyPrompt(aiName) {
