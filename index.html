@@ -42,7 +42,6 @@
             position: relative;
         }
 
-        /* Animated Background */
         body::before {
             content: '';
             position: fixed;
@@ -64,7 +63,6 @@
             66% { transform: translate(20px, -10px) rotate(-1deg); }
         }
 
-        /* Header */
         .header {
             padding: 30px 20px;
             text-align: center;
@@ -99,19 +97,26 @@
             font-weight: 400;
         }
 
-        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Categories Grid */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 40px;
+        }
+
+        @media (min-width: 769px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         @media (max-width: 768px) {
@@ -129,7 +134,6 @@
             }
         }
 
-        /* Category Card */
         .category-card {
             background: var(--surface);
             border-radius: 20px;
@@ -177,7 +181,6 @@
             opacity: 1;
         }
 
-        /* Different gradients for each category */
         .category-card[data-category="text"]::before { background: var(--gradient-1); }
         .category-card[data-category="image"]::before { background: var(--gradient-2); }
         .category-card[data-category="video"]::before { background: var(--gradient-3); }
@@ -195,9 +198,6 @@
             font-size: 40px;
             border-radius: 20px;
             position: relative;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         @media (max-width: 768px) {
@@ -220,33 +220,12 @@
             }
         }
 
-        /* Если нет изображения, показываем градиент с эмодзи */
         .category-card[data-category="text"] .category-icon { background: var(--gradient-1); }
         .category-card[data-category="image"] .category-icon { background: var(--gradient-2); }
         .category-card[data-category="video"] .category-icon { background: var(--gradient-3); }
         .category-card[data-category="audio"] .category-icon { background: var(--gradient-4); }
         .category-card[data-category="tools"] .category-icon { background: var(--gradient-5); }
         .category-card[data-category="prompts"] .category-icon { background: var(--gradient-6); }
-
-        /* Стиль для кастомных изображений */
-        .category-icon.has-image {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .category-icon.has-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: inherit;
-            border-radius: inherit;
-            opacity: 0.8;
-            z-index: -1;
-        }
 
         .category-title {
             font-size: 24px;
@@ -272,14 +251,13 @@
             color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 0;
         }
 
         @media (max-width: 768px) {
             .category-description {
                 font-size: 12px;
                 line-height: 1.4;
-                margin-bottom: 15px;
             }
         }
 
@@ -287,7 +265,6 @@
             .category-description {
                 font-size: 11px;
                 line-height: 1.3;
-                margin-bottom: 10px;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 line-clamp: 3;
@@ -296,58 +273,274 @@
             }
         }
 
-        .category-count {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 100px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .category-count {
-                padding: 6px 12px;
-                font-size: 12px;
-                gap: 6px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .category-count {
-                padding: 4px 8px;
-                font-size: 10px;
-                gap: 4px;
-            }
-        }
-
-        .category-arrow {
-            margin-left: auto;
-            width: 24px;
-            height: 24px;
-            opacity: 0.5;
+        /* Banner Carousel */
+        .banner-carousel-container {
+            position: relative;
+            margin: 25px 0;
+            height: 160px;
+            overflow: hidden;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            grid-column: 1 / -1;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
+        .banner-carousel-container:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
         @media (max-width: 768px) {
-            .category-arrow {
-                width: 20px;
-                height: 20px;
+            .banner-carousel-container {
+                height: 130px;
+                border-radius: 20px;
             }
         }
 
         @media (max-width: 480px) {
-            .category-arrow {
-                width: 16px;
-                height: 16px;
+            .banner-carousel-container {
+                height: 110px;
+                border-radius: 15px;
             }
         }
 
-        .category-card:hover .category-arrow {
-            opacity: 1;
-            transform: translateX(5px);
+        .banner-carousel {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .banner-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .banner-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            z-index: 1.5;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .banner-content {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-content {
+                padding: 10px;
+            }
+        }
+
+        .banner-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+            animation: bannerIconFloat 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .banner-icon {
+                font-size: 25px;
+                margin-bottom: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-icon {
+                font-size: 20px;
+                margin-bottom: 4px;
+            }
+        }
+
+        @keyframes bannerIconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .banner-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .banner-title {
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-title {
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+        }
+
+        .banner-description {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+            line-height: 1.4;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .banner-description {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-description {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+        }
+
+        /* Carousel Navigation */
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+            pointer-events: auto;
+        }
+
+        @media (max-width: 480px) {
+            .carousel-dots {
+                bottom: 10px;
+                gap: 10px;
+            }
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        @media (max-width: 480px) {
+            .dot {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        .dot.active {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow-prev {
+            left: 10px;
+        }
+
+        .carousel-arrow-next {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-arrow {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-arrow {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .carousel-arrow-prev {
+                left: 8px;
+            }
+            
+            .carousel-arrow-next {
+                right: 8px;
+            }
+        }
+
+        .banner-carousel-container.dragging {
+            cursor: grabbing;
+        }
+
+        .banner-carousel-container.dragging .banner-carousel {
+            transition: none;
         }
 
         /* Stats Section */
@@ -476,7 +669,6 @@
             margin-top: 15px;
         }
 
-        /* Pulse Animation for Icons */
         @keyframes iconPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -484,21 +676,6 @@
 
         .category-card:hover .category-icon {
             animation: iconPulse 1s ease-in-out infinite;
-        }
-
-        /* Loading Animation */
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .loading {
-            background: linear-gradient(90deg, 
-                var(--surface) 25%, 
-                var(--surface-light) 50%, 
-                var(--surface) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
         }
     </style>
 </head>
@@ -511,94 +688,104 @@
 
     <main class="container">
         <div class="categories-grid">
-            <!-- Текстовые нейросети -->
+            <!-- Первая строка -->
             <div class="category-card" data-category="text" onclick="navigateToCategory('text')">
                 <div class="category-icon" id="text-icon">💬</div>
                 <h2 class="category-title">Текстовые AI</h2>
                 <p class="category-description">
                     ChatGPT, Claude, Gemini и другие языковые модели для работы с текстом, кодом и анализа данных
                 </p>
-                <span class="category-count">
-                    <span>15+ нейросетей</span>
-                </span>
-                <svg class="category-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
 
-            <!-- Генераторы изображений -->
             <div class="category-card" data-category="image" onclick="navigateToCategory('image')">
                 <div class="category-icon" id="image-icon">🎨</div>
                 <h2 class="category-title">Генераторы изображений</h2>
                 <p class="category-description">
                     Midjourney, DALL-E, Stable Diffusion для создания уникальных изображений и артов
                 </p>
-                <span class="category-count">
-                    <span>20+ генераторов</span>
-                </span>
-                <svg class="category-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
 
-            <!-- Видео AI -->
+            <!-- Banner Carousel -->
+            <div class="banner-carousel-container">
+                <div class="banner-carousel">
+                    <div class="banner-slide active" data-slide="0" data-url="https://example.com/ai-news">
+                        <div class="banner-content">
+                            <div class="banner-icon">🚀</div>
+                            <h3 class="banner-title">Новые возможности AI</h3>
+                            <p class="banner-description">Откройте для себя последние достижения в области искусственного интеллекта</p>
+                        </div>
+                        <div class="banner-background" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    </div>
+
+                    <div class="banner-slide" data-slide="1" data-url="https://example.com/courses">
+                        <div class="banner-content">
+                            <div class="banner-icon">💡</div>
+                            <h3 class="banner-title">Обучение и курсы</h3>
+                            <p class="banner-description">Изучайте AI с нашими экспертными курсами и материалами</p>
+                        </div>
+                        <div class="banner-background" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    </div>
+
+                    <div class="banner-slide" data-slide="2" data-url="https://example.com/business">
+                        <div class="banner-content">
+                            <div class="banner-icon">🎯</div>
+                            <h3 class="banner-title">Профессиональные решения</h3>
+                            <p class="banner-description">AI-инструменты для бизнеса и профессиональной деятельности</p>
+                        </div>
+                        <div class="banner-background" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-dots">
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
+                </div>
+                
+                <button class="carousel-arrow carousel-arrow-prev">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button class="carousel-arrow carousel-arrow-next">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Вторая строка -->
             <div class="category-card" data-category="video" onclick="navigateToCategory('video')">
                 <div class="category-icon" id="video-icon">🎬</div>
                 <h2 class="category-title">Видео и анимация</h2>
                 <p class="category-description">
                     Runway, Pika Labs, Synthesia для создания и редактирования видео с помощью AI
                 </p>
-                <span class="category-count">
-                    <span>10+ инструментов</span>
-                </span>
-                <svg class="category-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
 
-            <!-- Аудио AI -->
             <div class="category-card" data-category="audio" onclick="navigateToCategory('audio')">
                 <div class="category-icon" id="audio-icon">🎵</div>
                 <h2 class="category-title">Аудио и музыка</h2>
                 <p class="category-description">
                     ElevenLabs, Suno AI, Mubert для генерации голоса, музыки и звуковых эффектов
                 </p>
-                <span class="category-count">
-                    <span>12+ сервисов</span>
-                </span>
-                <svg class="category-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
 
-            <!-- Другие инструменты -->
+            <!-- Третья строка -->
             <div class="category-card" data-category="tools" onclick="navigateToCategory('tools')">
                 <div class="category-icon" id="tools-icon">🛠️</div>
                 <h2 class="category-title">Другие инструменты</h2>
                 <p class="category-description">
                     Специализированные AI для кода, 3D, дизайна, продуктивности и бизнеса
                 </p>
-                <span class="category-count">
-                    <span>25+ инструментов</span>
-                </span>
-                <svg class="category-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
 
-            <!-- Промпты и обучение -->
             <div class="category-card" data-category="prompts" onclick="navigateToCategory('prompts')">
                 <div class="category-icon" id="prompts-icon">📚</div>
                 <h2 class="category-title">Промпты и обучение</h2>
                 <p class="category-description">
                     Коллекции промптов, курсы, гайды и полезные материалы для работы с AI
                 </p>
-                <span class="category-count">
-                    <span>100+ материалов</span>
-                </span>
-                <svg class="category-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
         </div>
 
@@ -639,7 +826,7 @@
     </footer>
 
     <script>
-        // Initialize Telegram Web App if available
+        // Initialize Telegram Web App
         if (window.Telegram?.WebApp) {
             const tg = window.Telegram.WebApp;
             tg.ready();
@@ -652,12 +839,9 @@
             event.currentTarget.style.transform = 'scale(0.95)';
             
             setTimeout(() => {
-                console.log(`Переход в категорию: ${category}`);
-                
-                // Переходы на страницы категорий
                 const categoryPages = {
                     'text': 'text-ai.html',
-                    'image': 'image-ai.html', 
+                    'image': 'image-ai.html',
                     'video': 'video-ai.html',
                     'audio': 'audio-ai.html',
                     'tools': 'tools-ai.html',
@@ -667,13 +851,105 @@
                 if (categoryPages[category]) {
                     window.location.href = categoryPages[category];
                 } else {
-                    // Fallback для несуществующих страниц
-                    alert(`Страница категории "${category}" в разработке`);
+                    alert('Страница категории "' + category + '" в разработке');
                 }
             }, 200);
         }
 
-        // Footer navigation
+        // Banner Carousel
+        let currentSlide = 0;
+        let slideInterval;
+
+        function initBannerCarousel() {
+            const carousel = document.querySelector('.banner-carousel');
+            const slides = document.querySelectorAll('.banner-slide');
+            const dots = document.querySelectorAll('.dot');
+            const container = document.querySelector('.banner-carousel-container');
+            const prevBtn = document.querySelector('.carousel-arrow-prev');
+            const nextBtn = document.querySelector('.carousel-arrow-next');
+
+            if (!carousel || !slides.length) return;
+
+            function updateSlide() {
+                carousel.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+                
+                slides.forEach(function(slide, index) {
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+                
+                dots.forEach(function(dot, index) {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlide();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlide();
+            }
+
+            function startAutoSlide() {
+                slideInterval = setInterval(nextSlide, 1000);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(slideInterval);
+            }
+
+            // Стрелки
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    prevSlide();
+                    stopAutoSlide();
+                    setTimeout(startAutoSlide, 3000);
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    nextSlide();
+                    stopAutoSlide();
+                    setTimeout(startAutoSlide, 3000);
+                });
+            }
+
+            // Клик по баннеру
+            if (container) {
+                container.addEventListener('click', function(e) {
+                    if (!e.target.closest('.carousel-arrow')) {
+                        const activeSlide = slides[currentSlide];
+                        const url = activeSlide.getAttribute('data-url');
+                        if (url) {
+                            window.open(url, '_blank');
+                        }
+                    }
+                });
+
+                container.addEventListener('mouseenter', stopAutoSlide);
+                container.addEventListener('mouseleave', startAutoSlide);
+            }
+
+            updateSlide();
+            startAutoSlide();
+        }
+
+        // Footer functions
         function showAbout() {
             alert('О проекте:\n\nНавигатор ИИшницы - это каталог лучших AI-инструментов для работы, творчества и обучения.\n\nМы собираем и систематизируем информацию о нейросетях, чтобы помочь вам найти подходящий инструмент для любой задачи.');
         }
@@ -682,46 +958,49 @@
             alert('Связаться с автором:\n\nTelegram: @ваш_телеграм\nEmail: ваша@почта.com\n\nБудем рады вашим предложениям и замечаниям!');
         }
 
-        // Add entrance animation
-        document.addEventListener('DOMContentLoaded', () => {
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            initBannerCarousel();
+
+            // Анимация карточек
             const cards = document.querySelectorAll('.category-card');
-            cards.forEach((card, index) => {
+            cards.forEach(function(card, index) {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                 }, index * 100);
             });
 
-            // Footer links handlers
+            // Footer links
             const aboutLink = document.querySelector('a[href="#about"]');
             const contactLink = document.querySelector('a[href="#contact"]');
             
             if (aboutLink) {
-                aboutLink.addEventListener('click', (e) => {
+                aboutLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     showAbout();
                 });
             }
             
             if (contactLink) {
-                contactLink.addEventListener('click', (e) => {
+                contactLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     showContact();
                 });
             }
         });
 
-        // Parallax effect on mouse move
-        document.addEventListener('mousemove', (e) => {
+        // Parallax effect
+        document.addEventListener('mousemove', function(e) {
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
             
-            document.body.style.setProperty('--mouse-x', `${x * 20 - 10}px`);
-            document.body.style.setProperty('--mouse-y', `${y * 20 - 10}px`);
+            document.body.style.setProperty('--mouse-x', (x * 20 - 10) + 'px');
+            document.body.style.setProperty('--mouse-y', (y * 20 - 10) + 'px');
         });
     </script>
 </body>
