@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Другие инструменты - Навигатор ИИшницы</title>
-    <meta name="description" content="Специализированные AI-инструменты для разных задач">
+    <meta name="description" content="Страница в разработке - следите за обновлениями в канале ИИшница">
     
     <style>
         * {
@@ -67,6 +67,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(10, 14, 39, 0.8);
         }
 
         .back-btn {
@@ -121,96 +122,98 @@
 
         /* Main Container */
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 60px 20px;
+            text-align: center;
         }
 
-        /* AI Cards */
-        .ai-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .ai-card {
+        /* Development Message */
+        .dev-message {
             background: var(--surface);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 20px;
+            padding: 40px 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .ai-card::before {
+        .dev-message::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
-        .ai-card:hover {
-            transform: translateY(-2px);
-            background: var(--surface-light);
-            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.2);
-        }
-
-        .ai-card:hover::before {
-            opacity: 1;
-        }
-
-        .ai-logo {
-            width: 60px;
-            height: 60px;
+        .dev-icon {
+            width: 80px;
+            height: 80px;
             background: var(--gradient-primary);
-            border-radius: 12px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            font-weight: bold;
-            color: white;
-            flex-shrink: 0;
+            font-size: 40px;
+            margin: 0 auto 25px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .ai-info {
-            flex: 1;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        .ai-name {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--text-primary);
+        .dev-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .ai-description {
+        .dev-description {
             color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        .ai-arrow {
+        /* Telegram Channel Link */
+        .telegram-link {
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 20px;
+        }
+
+        .telegram-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(250, 112, 154, 0.4);
+        }
+
+        .telegram-icon {
             width: 24px;
             height: 24px;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-            color: var(--primary);
         }
 
-        .ai-card:hover .ai-arrow {
-            opacity: 1;
-            transform: translateX(5px);
+        .coming-soon {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 20px;
+            opacity: 0.8;
         }
 
         /* Mobile Styles */
@@ -231,47 +234,30 @@
             }
 
             .container {
-                padding: 20px 15px;
+                padding: 40px 15px;
             }
 
-            .ai-card {
-                padding: 15px;
-                gap: 12px;
+            .dev-message {
+                padding: 30px 20px;
             }
 
-            .ai-logo {
-                width: 50px;
-                height: 50px;
+            .dev-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+
+            .dev-title {
                 font-size: 24px;
             }
 
-            .ai-name {
-                font-size: 18px;
+            .dev-description {
+                font-size: 15px;
             }
 
-            .ai-description {
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .ai-card {
-                padding: 12px;
-                gap: 10px;
-            }
-
-            .ai-logo {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
-
-            .ai-name {
-                font-size: 16px;
-            }
-
-            .ai-description {
-                font-size: 12px;
+            .telegram-link {
+                padding: 12px 20px;
+                font-size: 15px;
             }
         }
     </style>
@@ -294,34 +280,23 @@
     </header>
 
     <main class="container">
-        <div class="ai-cards">
-            <!-- GitHub Copilot -->
-            <div class="ai-card" onclick="openAI('copilot')">
-                <div class="ai-logo" style="background: linear-gradient(135deg, #24292E 0%, #586069 100%);">
-                    GH
-                </div>
-                <div class="ai-info">
-                    <h3 class="ai-name">GitHub Copilot</h3>
-                    <p class="ai-description">AI-ассистент для программирования и автодополнения кода</p>
-                </div>
-                <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-            </div>
-
-            <!-- Notion AI -->
-            <div class="ai-card" onclick="openAI('notion')">
-                <div class="ai-logo" style="background: linear-gradient(135deg, #000000 0%, #37352F 100%);">
-                    NO
-                </div>
-                <div class="ai-info">
-                    <h3 class="ai-name">Notion AI</h3>
-                    <p class="ai-description">Умный помощник для заметок, планирования и работы</p>
-                </div>
-                <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-            </div>
+        <div class="dev-message">
+            <div class="dev-icon">🚧</div>
+            <h2 class="dev-title">Страница в разработке</h2>
+            <p class="dev-description">
+                Формируем каталог специализированных AI-инструментов. 
+                Здесь будут GitHub Copilot, Notion AI, Figma AI и множество других полезных решений!
+            </p>
+            
+            <a href="https://t.me/ii_eggs" target="_blank" class="telegram-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Telegram_2019_simple_logo.svg/60px-Telegram_2019_simple_logo.svg.png" 
+                     alt="Telegram" class="telegram-icon">
+                Канал "ИИшница"
+            </a>
+            
+            <p class="coming-soon">
+                📢 Следите за обновлениями в нашем Telegram-канале
+            </p>
         </div>
     </main>
 
@@ -330,32 +305,17 @@
             window.history.back();
         }
 
-        function openAI(aiName) {
-            console.log(`Открываем ${aiName}`);
-            
-            const links = {
-                'copilot': 'https://github.com/features/copilot',
-                'notion': 'https://www.notion.so/product/ai'
-            };
-            
-            if (links[aiName]) {
-                window.open(links[aiName], '_blank');
-            }
-        }
-
-        // Анимация появления карточек
+        // Анимация появления
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.ai-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 150);
-            });
+            const message = document.querySelector('.dev-message');
+            message.style.opacity = '0';
+            message.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                message.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                message.style.opacity = '1';
+                message.style.transform = 'translateY(0)';
+            }, 200);
         });
     </script>
 </body>
