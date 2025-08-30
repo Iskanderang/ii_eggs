@@ -677,12 +677,12 @@
                                             <strong>Особенности:</strong> Открытый исходный код, быстрая работа, часто бесплатная альтернатива GPT-4, сильна в технических вопросах
                                         </div>
                                     </div>
-                                    <div class="vpn-status vpn-required">
-                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                                        </svg>
-                                        VPN требуется
-                                    </div>
+                                    <div class="vpn-status vpn-not-required">
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+    VPN не требуется
+</div>
                                 </div>
                             </div>
                         </div>
@@ -888,6 +888,195 @@
 
 Задача: [ДЕТАЛЬНОЕ ОПИСАНИЕ]</div>
                                 <button class="copy-btn" onclick="copyPrompt('qwen')">
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                    Копировать промт
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YandexGPT -->
+            <div class="ai-card" id="yandexgpt-card">
+                <div class="ai-card-header" onclick="toggleCard('yandexgpt')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://play-lh.googleusercontent.com/EJpCCkNQrYAyD4NdTcWUe-RSdr1LGTz9ya6FQ1Q-H9RLRdhdg85_oHgHNrWxNiCVgcVD" 
+                             alt="YandexGPT" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">YandexGPT</h3>
+                        <p class="ai-description">Российская языковая модель от Яндекс с хорошим пониманием русского языка</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="tabs">
+                            <button class="tab-button active" onclick="switchTab('yandexgpt', 'info')">Инфо</button>
+                            <button class="tab-button" onclick="switchTab('yandexgpt', 'lifehack')">Лайфхак</button>
+                        </div>
+
+                        <div class="tab-content active" id="yandexgpt-info">
+                            <div class="content-block">
+                                <a href="https://alice.yandex.ru/?utm_source=yagpt_land&utm_campaign=button" target="_blank" class="use-btn">
+                                    <span>Открыть YandexGPT</span>
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div class="content-block">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                                        </svg>
+                                        <div class="info-text">
+                                            <strong>Возможности:</strong> Отличное понимание русского языка, помощь с российским контентом, поиск информации, креативные задачи
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <div class="info-text">
+                                            <strong>Особенности:</strong> Интеграция с сервисами Яндекс, знание российских реалий, работает через Алису и веб-интерфейс
+                                        </div>
+                                    </div>
+                                    <div class="vpn-status vpn-not-required">
+                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                        </svg>
+                                        VPN не требуется
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="yandexgpt-lifehack">
+                            <div class="content-block prompt-block">
+                                <h4 class="block-title">
+                                    <span class="icon">💡</span>
+                                    Русскоязычный промт
+                                </h4>
+                                <div class="prompt-text">Привет! Мне нужна помощь с [ТВОЯ ЗАДАЧА].
+
+Контекст задачи:
+- Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ/ИСПОЛЬЗОВАТЬ]
+- Формат результата: [КАК ДОЛЖЕН ВЫГЛЯДЕТЬ РЕЗУЛЬТАТ]
+- Особые требования: [СПЕЦИФИЧЕСКИЕ ПОЖЕЛАНИЯ]
+
+Дополнительная информация:
+- Срок выполнения: [КОГДА НУЖНО]
+- Объем работы: [СКОЛЬКО ТЕКСТА/МАТЕРИАЛА]
+- Стиль изложения: [ОФИЦИАЛЬНЫЙ/РАЗГОВОРНЫЙ/ТВОРЧЕСКИЙ]
+
+Пожалуйста, учти российские реалии и культурные особенности при подготовке ответа.
+
+Задача: [ПОДРОБНОЕ ОПИСАНИЕ ТОГО, ЧТО НУЖНО СДЕЛАТЬ]</div>
+                                <button class="copy-btn" onclick="copyPrompt('yandexgpt')">
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                    Копировать промт
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GigaChat -->
+            <div class="ai-card" id="gigachat-card">
+                <div class="ai-card-header" onclick="toggleCard('gigachat')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://cs13.pikabu.ru/post_img/2023/04/24/9/1682349680177691808.jpg" 
+                             alt="GigaChat" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">GigaChat</h3>
+                        <p class="ai-description">Российская мультимодальная модель от Сбера для бизнеса и творчества</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="tabs">
+                            <button class="tab-button active" onclick="switchTab('gigachat', 'info')">Инфо</button>
+                            <button class="tab-button" onclick="switchTab('gigachat', 'lifehack')">Лайфхак</button>
+                        </div>
+
+                        <div class="tab-content active" id="gigachat-info">
+                            <div class="content-block">
+                                <a href="https://giga.chat/" target="_blank" class="use-btn">
+                                    <span>Открыть GigaChat</span>
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div class="content-block">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <div class="info-text">
+                                            <strong>Возможности:</strong> Работа с текстом и изображениями, программирование, бизнес-задачи, творческие проекты, анализ документов
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                        <div class="info-text">
+                                            <strong>Особенности:</strong> Разработан с учетом российского законодательства, интеграция с продуктами Сбера, мультимодальность
+                                        </div>
+                                    </div>
+                                    <div class="vpn-status vpn-not-required">
+                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                        </svg>
+                                        VPN не требуется
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="gigachat-lifehack">
+                            <div class="content-block prompt-block">
+                                <h4 class="block-title">
+                                    <span class="icon">💡</span>
+                                    Бизнес-промт
+                                </h4>
+                                <div class="prompt-text">Задача: [ОПИШИ БИЗНЕС-ЗАДАЧУ ИЛИ ПРОЕКТ]
+
+Исходные данные:
+- Отрасль/сфера деятельности: [УКАЖИ ОБЛАСТЬ]
+- Целевая аудитория: [КТО ТВОИ КЛИЕНТЫ/ПОЛЬЗОВАТЕЛИ]
+- Текущая ситуация: [ЧТО ЕСТЬ СЕЙЧАС]
+- Желаемый результат: [ЧЕГО ХОЧЕШЬ ДОСТИЧЬ]
+
+Ограничения:
+- Бюджет: [ЕСЛИ АКТУАЛЬНО]
+- Временные рамки: [СРОКИ]
+- Особые требования: [СПЕЦИФИЧЕСКИЕ УСЛОВИЯ]
+
+Прошу подготовить детальный анализ с практическими рекомендациями. Учти российские бизнес-реалии и законодательство.
+
+Ожидаю конкретные шаги для реализации.</div>
+                                <button class="copy-btn" onclick="copyPrompt('gigachat')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                                     </svg>
@@ -1195,7 +1384,40 @@
 2. Добавить свое мнение/взгляд
 3. Не забыть про юмор, если уместно
 
-Интересны как факты, так и твои инсайты!`
+Интересны как факты, так и твои инсайты!`,
+
+            'yandexgpt': `Привет! Мне нужна помощь с [ТВОЯ ЗАДАЧА].
+
+Контекст задачи:
+- Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ/ИСПОЛЬЗОВАТЬ]
+- Формат результата: [КАК ДОЛЖЕН ВЫГЛЯДЕТЬ РЕЗУЛЬТАТ]
+- Особые требования: [СПЕЦИФИЧЕСКИЕ ПОЖЕЛАНИЯ]
+
+Дополнительная информация:
+- Срок выполнения: [КОГДА НУЖНО]
+- Объем работы: [СКОЛЬКО ТЕКСТА/МАТЕРИАЛА]
+- Стиль изложения: [ОФИЦИАЛЬНЫЙ/РАЗГОВОРНЫЙ/ТВОРЧЕСКИЙ]
+
+Пожалуйста, учти российские реалии и культурные особенности при подготовке ответа.
+
+Задача: [ПОДРОБНОЕ ОПИСАНИЕ ТОГО, ЧТО НУЖНО СДЕЛАТЬ]`,
+
+            'gigachat': `Задача: [ОПИШИ БИЗНЕС-ЗАДАЧУ ИЛИ ПРОЕКТ]
+
+Исходные данные:
+- Отрасль/сфера деятельности: [УКАЖИ ОБЛАСТЬ]
+- Целевая аудитория: [КТО ТВОИ КЛИЕНТЫ/ПОЛЬЗОВАТЕЛИ]
+- Текущая ситуация: [ЧТО ЕСТЬ СЕЙЧАС]
+- Желаемый результат: [ЧЕГО ХОЧЕШЬ ДОСТИЧЬ]
+
+Ограничения:
+- Бюджет: [ЕСЛИ АКТУАЛЬНО]
+- Временные рамки: [СРОКИ]
+- Особые требования: [СПЕЦИФИЧЕСКИЕ УСЛОВИЯ]
+
+Прошу подготовить детальный анализ с практическими рекомендациями. Учти российские бизнес-реалии и законодательство.
+
+Ожидаю конкретные шаги для реализации.`
         };
 
         function copyPrompt(aiName) {
