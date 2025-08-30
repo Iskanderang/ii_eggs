@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Навигатор ИИшницы - Путеводитель по миру нейросетей</title>
-    <meta name="description" content="Ваш гид в мире искусственного интеллекта">
+    <meta name="description" content="Одна закладка для всего">
     
     <!-- Telegram Web App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -71,9 +71,17 @@
         }
 
         .logo {
-            font-size: 50px;
             margin-bottom: 15px;
             animation: pulse 2s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 15px;
         }
 
         @keyframes pulse {
@@ -464,7 +472,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            pointer-events: none;
+            cursor: pointer;
         }
 
         @media (max-width: 480px) {
@@ -533,14 +541,6 @@
             .carousel-arrow-next {
                 right: 8px;
             }
-        }
-
-        .banner-carousel-container.dragging {
-            cursor: grabbing;
-        }
-
-        .banner-carousel-container.dragging .banner-carousel {
-            transition: none;
         }
 
         /* Stats Section */
@@ -681,16 +681,17 @@
 </head>
 <body>
     <header class="header">
-        <div class="logo">🚀</div>
+        <div class="logo">
+            <img src="your-logo.png" alt="Навигатор ИИшницы" />
+        </div>
         <h1>Навигатор ИИшницы</h1>
-        <p class="subtitle">Ваш путеводитель в мире искусственного интеллекта</p>
+        <p class="subtitle">Одна закладка для всего</p>
     </header>
 
     <main class="container">
         <div class="categories-grid">
-            <!-- Первая строка -->
             <div class="category-card" data-category="text" onclick="navigateToCategory('text')">
-                <div class="category-icon" id="text-icon">💬</div>
+                <div class="category-icon">💬</div>
                 <h2 class="category-title">Текстовые AI</h2>
                 <p class="category-description">
                     ChatGPT, Claude, Gemini и другие языковые модели для работы с текстом, кодом и анализа данных
@@ -698,14 +699,13 @@
             </div>
 
             <div class="category-card" data-category="image" onclick="navigateToCategory('image')">
-                <div class="category-icon" id="image-icon">🎨</div>
+                <div class="category-icon">🎨</div>
                 <h2 class="category-title">Генераторы изображений</h2>
                 <p class="category-description">
                     Midjourney, DALL-E, Stable Diffusion для создания уникальных изображений и артов
                 </p>
             </div>
 
-            <!-- Banner Carousel -->
             <div class="banner-carousel-container">
                 <div class="banner-carousel">
                     <div class="banner-slide active" data-slide="0" data-url="https://example.com/ai-news">
@@ -754,9 +754,8 @@
                 </button>
             </div>
 
-            <!-- Вторая строка -->
             <div class="category-card" data-category="video" onclick="navigateToCategory('video')">
-                <div class="category-icon" id="video-icon">🎬</div>
+                <div class="category-icon">🎬</div>
                 <h2 class="category-title">Видео и анимация</h2>
                 <p class="category-description">
                     Runway, Pika Labs, Synthesia для создания и редактирования видео с помощью AI
@@ -764,16 +763,15 @@
             </div>
 
             <div class="category-card" data-category="audio" onclick="navigateToCategory('audio')">
-                <div class="category-icon" id="audio-icon">🎵</div>
+                <div class="category-icon">🎵</div>
                 <h2 class="category-title">Аудио и музыка</h2>
                 <p class="category-description">
                     ElevenLabs, Suno AI, Mubert для генерации голоса, музыки и звуковых эффектов
                 </p>
             </div>
 
-            <!-- Третья строка -->
             <div class="category-card" data-category="tools" onclick="navigateToCategory('tools')">
-                <div class="category-icon" id="tools-icon">🛠️</div>
+                <div class="category-icon">🛠️</div>
                 <h2 class="category-title">Другие инструменты</h2>
                 <p class="category-description">
                     Специализированные AI для кода, 3D, дизайна, продуктивности и бизнеса
@@ -781,7 +779,7 @@
             </div>
 
             <div class="category-card" data-category="prompts" onclick="navigateToCategory('prompts')">
-                <div class="category-icon" id="prompts-icon">📚</div>
+                <div class="category-icon">📚</div>
                 <h2 class="category-title">Промпты и обучение</h2>
                 <p class="category-description">
                     Коллекции промптов, курсы, гайды и полезные материалы для работы с AI
@@ -789,7 +787,6 @@
             </div>
         </div>
 
-        <!-- Statistics -->
         <div class="stats">
             <div class="stat-item">
                 <div class="stat-number">100+</div>
@@ -822,23 +819,21 @@
                 Связаться с автором
             </a>
         </div>
-        <p class="footer-copyright">© 2024 Навигатор ИИшницы • Ваш гид в мире искусственного интеллекта</p>
+        <p class="footer-copyright">© 2024 Навигатор ИИшницы • Одна закладка для всего</p>
     </footer>
 
     <script>
-        // Initialize Telegram Web App
-        if (window.Telegram?.WebApp) {
+        if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
             tg.ready();
             tg.expand();
         }
 
-        // Navigation function
         function navigateToCategory(category) {
-            localStorage.setItem('selectedCategory', category);
-            event.currentTarget.style.transform = 'scale(0.95)';
+            const clickedCard = event.currentTarget;
+            clickedCard.style.transform = 'scale(0.95)';
             
-            setTimeout(() => {
+            setTimeout(function() {
                 const categoryPages = {
                     'text': 'text-ai.html',
                     'image': 'image-ai.html',
@@ -849,14 +844,16 @@
                 };
                 
                 if (categoryPages[category]) {
+                    localStorage.setItem('selectedCategory', category);
                     window.location.href = categoryPages[category];
                 } else {
                     alert('Страница категории "' + category + '" в разработке');
                 }
+                
+                clickedCard.style.transform = '';
             }, 200);
         }
 
-        // Banner Carousel
         let currentSlide = 0;
         let slideInterval;
 
@@ -901,21 +898,24 @@
             }
 
             function startAutoSlide() {
-                slideInterval = setInterval(nextSlide, 1000);
+                slideInterval = setInterval(nextSlide, 3000);
             }
 
             function stopAutoSlide() {
                 clearInterval(slideInterval);
             }
 
-            // Стрелки
+            function resetAutoSlide() {
+                stopAutoSlide();
+                setTimeout(startAutoSlide, 5000);
+            }
+
             if (prevBtn) {
                 prevBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     prevSlide();
-                    stopAutoSlide();
-                    setTimeout(startAutoSlide, 3000);
+                    resetAutoSlide();
                 });
             }
 
@@ -924,15 +924,23 @@
                     e.preventDefault();
                     e.stopPropagation();
                     nextSlide();
-                    stopAutoSlide();
-                    setTimeout(startAutoSlide, 3000);
+                    resetAutoSlide();
                 });
             }
 
-            // Клик по баннеру
+            dots.forEach(function(dot, index) {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    currentSlide = index;
+                    updateSlide();
+                    resetAutoSlide();
+                });
+            });
+
             if (container) {
                 container.addEventListener('click', function(e) {
-                    if (!e.target.closest('.carousel-arrow')) {
+                    if (!e.target.closest('.carousel-arrow') && !e.target.closest('.dot')) {
                         const activeSlide = slides[currentSlide];
                         const url = activeSlide.getAttribute('data-url');
                         if (url) {
@@ -940,29 +948,23 @@
                         }
                     }
                 });
-
-                container.addEventListener('mouseenter', stopAutoSlide);
-                container.addEventListener('mouseleave', startAutoSlide);
             }
 
             updateSlide();
             startAutoSlide();
         }
 
-        // Footer functions
         function showAbout() {
-            alert('О проекте:\n\nНавигатор ИИшницы - это каталог лучших AI-инструментов для работы, творчества и обучения.\n\nМы собираем и систематизируем информацию о нейросетях, чтобы помочь вам найти подходящий инструмент для любой задачи.');
+            alert('О проекте:\n\n"Навигатор ИИшницы" создан человеком, который в программировании разбирается примерно как кот в квантовой физике.\n\nНо! У меня есть суперспособность - я умею дружить с нейросетями и практикую древнее искусство "вайб кодинга".\n\nЕще автору надоело вечно искать нужную нейросеть с кучей закладок у себя на устройствах, и он решил создать одно свое место для всего.\n\nЗдесь собраны AI-инструменты, найденные и испробованные автором методом научного тыка и экспериментов. Если что-то сломается - это не баг, это фича! Помните я ничего не знаю в программировании.\n\nP.S. Весь этот сайт написан в соавторстве с ИИ. Он программист, я - мечтатель.');
         }
 
         function showContact() {
-            alert('Связаться с автором:\n\nTelegram: @ваш_телеграм\nEmail: ваша@почта.com\n\nБудем рады вашим предложениям и замечаниям!');
+            alert('Связаться с автором:\n\nTelegram: @info_lipp_off\nEmail: htciskander@gmail.com\n\nБудем рады вашим предложениям и замечаниям!');
         }
 
-        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             initBannerCarousel();
 
-            // Анимация карточек
             const cards = document.querySelectorAll('.category-card');
             cards.forEach(function(card, index) {
                 card.style.opacity = '0';
@@ -975,7 +977,6 @@
                 }, index * 100);
             });
 
-            // Footer links
             const aboutLink = document.querySelector('a[href="#about"]');
             const contactLink = document.querySelector('a[href="#contact"]');
             
@@ -994,7 +995,6 @@
             }
         });
 
-        // Parallax effect
         document.addEventListener('mousemove', function(e) {
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
