@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Текстовые AI - Навигатор ИИшницы</title>
     <meta name="description" content="Лучшие текстовые AI для работы с текстом и кодом">
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --primary: #667eea;
             --primary-dark: #5a67d8;
@@ -28,7 +26,6 @@
             --warning: #F59E0B;
             --error: #EF4444;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
             background: var(--background);
@@ -37,7 +34,6 @@
             position: relative;
             overflow-x: hidden;
         }
-
         /* Animated Background */
         body::before {
             content: '';
@@ -53,13 +49,11 @@
             z-index: -1;
             animation: float 25s ease-in-out infinite;
         }
-
         @keyframes float {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
             33% { transform: translate(-15px, -15px) rotate(0.5deg); }
             66% { transform: translate(15px, -10px) rotate(-0.5deg); }
         }
-
         /* Header */
         .header {
             padding: 20px;
@@ -73,7 +67,6 @@
             z-index: 100;
             background: rgba(10, 14, 39, 0.8);
         }
-
         .back-btn {
             background: var(--gradient-primary);
             border: none;
@@ -87,17 +80,14 @@
             justify-content: center;
             transition: transform 0.3s ease;
         }
-
         .back-btn:hover {
             transform: scale(1.05);
         }
-
         .category-header {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
         .category-icon-large {
             width: 50px;
             height: 50px;
@@ -108,7 +98,6 @@
             justify-content: center;
             font-size: 25px;
         }
-
         .category-info h1 {
             font-size: 28px;
             font-weight: 700;
@@ -118,26 +107,22 @@
             background-clip: text;
             margin-bottom: 5px;
         }
-
         .category-info .subtitle {
             color: var(--text-secondary);
             font-size: 14px;
         }
-
         /* Main Container */
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 30px 20px;
         }
-
         /* AI Cards */
         .ai-cards {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         .ai-card {
             background: var(--surface);
             border-radius: 16px;
@@ -146,12 +131,10 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .ai-card.expanded {
             border-color: var(--primary);
             box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
         }
-
         .ai-card-header {
             padding: 20px;
             display: flex;
@@ -160,11 +143,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .ai-card:not(.expanded) .ai-card-header:hover {
             background: var(--surface-light);
         }
-
         .ai-card::before {
             content: '';
             position: absolute;
@@ -176,12 +157,10 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
         .ai-card:hover::before,
         .ai-card.expanded::before {
             opacity: 1;
         }
-
         .ai-logo {
             width: 60px;
             height: 60px;
@@ -195,24 +174,20 @@
             color: white;
             flex-shrink: 0;
         }
-
         .ai-info {
             flex: 1;
         }
-
         .ai-name {
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--text-primary);
         }
-
         .ai-description {
             color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.4;
         }
-
         .ai-arrow {
             width: 24px;
             height: 24px;
@@ -221,17 +196,14 @@
             color: var(--primary);
             transform: rotate(0deg);
         }
-
         .ai-card.expanded .ai-arrow {
             transform: rotate(180deg);
             opacity: 1;
         }
-
         .ai-card:not(.expanded):hover .ai-arrow {
             opacity: 1;
             transform: translateX(5px);
         }
-
         /* Expanded Content */
         .ai-content {
             max-height: 0;
@@ -239,22 +211,18 @@
             transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: var(--surface-light);
         }
-
         .ai-card.expanded .ai-content {
             max-height: 800px;
         }
-
         .ai-content-inner {
             padding: 25px;
         }
-
         /* Tabs */
         .tabs {
             display: flex;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 20px;
         }
-
         .tab-button {
             background: transparent;
             border: none;
@@ -267,25 +235,20 @@
             border-bottom: 2px solid transparent;
             position: relative;
         }
-
         .tab-button.active {
             color: var(--text-primary);
             border-bottom-color: var(--primary);
         }
-
         .tab-button:hover:not(.active) {
             color: var(--text-primary);
             background: rgba(255, 255, 255, 0.05);
         }
-
         .tab-content {
             display: none;
         }
-
         .tab-content.active {
             display: block;
         }
-
         /* Content Blocks */
         .content-block {
             background: var(--surface);
@@ -294,23 +257,19 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 15px;
         }
-
         .content-block:last-child {
             margin-bottom: 0;
         }
-
         /* Info Tab Styles */
         .info-grid {
             display: grid;
             gap: 15px;
         }
-
         .info-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
-
         .info-icon {
             width: 20px;
             height: 20px;
@@ -318,13 +277,11 @@
             margin-top: 2px;
             flex-shrink: 0;
         }
-
         .info-text {
             color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.4;
         }
-
         .vpn-status {
             display: flex;
             align-items: center;
@@ -334,25 +291,21 @@
             font-size: 13px;
             font-weight: 500;
         }
-
         .vpn-required {
             background: rgba(239, 68, 68, 0.1);
             color: var(--error);
             border: 1px solid rgba(239, 68, 68, 0.2);
         }
-
         .vpn-not-required {
             background: rgba(16, 185, 129, 0.1);
             color: var(--success);
             border: 1px solid rgba(16, 185, 129, 0.2);
         }
-
         .vpn-sometimes {
             background: rgba(245, 158, 11, 0.1);
             color: var(--warning);
             border: 1px solid rgba(245, 158, 11, 0.2);
         }
-
         /* Use Button */
         .use-btn {
             background: var(--gradient-primary);
@@ -370,18 +323,15 @@
             gap: 8px;
             margin-top: 15px;
         }
-
         .use-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
-
         /* Lifehack Tab Styles */
         .prompt-block {
             background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.3);
         }
-
         .block-title {
             font-size: 16px;
             font-weight: 600;
@@ -391,11 +341,9 @@
             align-items: center;
             gap: 8px;
         }
-
         .block-title .icon {
             font-size: 18px;
         }
-
         .prompt-text {
             background: var(--background);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -409,7 +357,6 @@
             white-space: pre-wrap;
             margin-bottom: 15px;
         }
-
         .copy-btn {
             background: var(--success);
             color: white;
@@ -424,95 +371,76 @@
             align-items: center;
             gap: 6px;
         }
-
         .copy-btn:hover {
             background: #059669;
             transform: translateY(-1px);
         }
-
         .copy-btn.copied {
             background: var(--warning);
         }
-
         /* Mobile Styles */
         @media (max-width: 768px) {
             .header {
                 padding: 15px;
                 gap: 15px;
             }
-
             .category-icon-large {
                 width: 40px;
                 height: 40px;
                 font-size: 20px;
             }
-
             .category-info h1 {
                 font-size: 24px;
             }
-
             .container {
                 padding: 20px 15px;
             }
-
             .ai-card-header {
                 padding: 15px;
                 gap: 12px;
             }
-
             .ai-logo {
                 width: 50px;
                 height: 50px;
                 font-size: 24px;
             }
-
             .ai-name {
                 font-size: 18px;
             }
-
             .ai-description {
                 font-size: 13px;
             }
-
             .ai-content-inner {
                 padding: 20px 15px;
             }
-
             .content-block {
                 padding: 15px;
             }
-
             .tab-button {
                 padding: 10px 15px;
                 font-size: 13px;
             }
         }
-
         @media (max-width: 480px) {
             .ai-card-header {
                 padding: 12px;
                 gap: 10px;
             }
-
             .ai-logo {
                 width: 45px;
                 height: 45px;
                 font-size: 20px;
             }
-
             .ai-name {
                 font-size: 16px;
             }
-
             .ai-description {
                 font-size: 12px;
             }
-
             .tabs {
                 flex-direction: row;
                 overflow-x: auto;
             }
-
             .tab-button {
                 white-space: nowrap;
                 min-width: fit-content;
@@ -527,7 +455,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
         </button>
-        
         <div class="category-header">
             <div class="category-icon-large">💬</div>
             <div class="category-info">
@@ -536,7 +463,6 @@
             </div>
         </div>
     </header>
-
     <main class="container">
         <div class="ai-cards">
             <!-- ChatGPT -->
@@ -554,14 +480,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('chatgpt', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('chatgpt', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="chatgpt-info">
                             <div class="content-block">
                                 <a href="https://chat.openai.com" target="_blank" class="use-btn">
@@ -571,7 +495,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -599,7 +522,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="chatgpt-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -607,12 +529,10 @@
                                     Универсальный промт
                                 </h4>
                                 <div class="prompt-text">Ты эксперт в [ТВОЯ ТЕМА]. Мне нужно [ТВОЯ ЗАДАЧА]. 
-
 Учти следующее:
 - Будь конкретным и детальным
 - Приведи примеры где возможно
 - Структурируй ответ для удобства чтения
-
 Моя задача: [ОПИШИ ЗАДАЧУ ПОДРОБНО]</div>
                                 <button class="copy-btn" onclick="copyPrompt('chatgpt')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -625,7 +545,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- DeepSeek -->
             <div class="ai-card" id="deepseek-card">
                 <div class="ai-card-header" onclick="toggleCard('deepseek')">
@@ -641,14 +560,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('deepseek', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('deepseek', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="deepseek-info">
                             <div class="content-block">
                                 <a href="https://chat.deepseek.com" target="_blank" class="use-btn">
@@ -658,7 +575,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -686,7 +602,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="deepseek-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -694,15 +609,12 @@
                                     Технический промт
                                 </h4>
                                 <div class="prompt-text">Задача: [ОПИШИ ЗАДАЧУ]
-
 Требования:
 1. Пошаговое решение
 2. Объяснение каждого этапа
 3. Проверка результата
 4. Альтернативные подходы (если есть)
-
 Контекст: [ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ]
-
 Ожидаю максимально точный и проработанный ответ.</div>
                                 <button class="copy-btn" onclick="copyPrompt('deepseek')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -715,7 +627,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Mixtral -->
             <div class="ai-card" id="mixtral-card">
                 <div class="ai-card-header" onclick="toggleCard('mixtral')">
@@ -731,14 +642,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('mixtral', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('mixtral', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="mixtral-info">
                             <div class="content-block">
                                 <a href="https://chat.mistral.ai" target="_blank" class="use-btn">
@@ -748,7 +657,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -776,7 +684,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="mixtral-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -784,17 +691,12 @@
                                     Творческий промт
                                 </h4>
                                 <div class="prompt-text">Роль: [УКАЖИ РОЛЬ - например "креативный писатель" или "аналитик"]
-
 Задача: [ТВОЯ ЗАДАЧА]
-
 Стиль: [УКАЖИ СТИЛЬ - формальный/неформальный/творческий]
-
 Аудитория: [ДЛЯ КОГО ДЕЛАЕШЬ]
-
 Дополнительные требования:
 - [ТРЕБОВАНИЕ 1]
 - [ТРЕБОВАНИЕ 2]
-
 Приступай!</div>
                                 <button class="copy-btn" onclick="copyPrompt('mixtral')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -807,7 +709,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Qwen -->
             <div class="ai-card" id="qwen-card">
                 <div class="ai-card-header" onclick="toggleCard('qwen')">
@@ -823,24 +724,21 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('qwen', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('qwen', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="qwen-info">
                             <div class="content-block">
-                                <a href="https://huggingface.co/spaces/Qwen/Qwen2.5-72B-Instruct" target="_blank" class="use-btn">
+                                <a href="https://chat.qwen.ai/" target="_blank" class="use-btn">
                                     <span>Открыть Qwen</span>
                                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -868,7 +766,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="qwen-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -876,16 +773,12 @@
                                     Многоязычный промт
                                 </h4>
                                 <div class="prompt-text">Контекст: [ОПИШИ СИТУАЦИЮ/БИЗНЕС-ЗАДАЧУ]
-
 Цель: [ЧТО НУЖНО ДОСТИЧЬ]
-
 Параметры:
 - Язык ответа: [УКАЖИ ЯЗЫК]
 - Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ]
 - Формат: [КАК ПОДАТЬ ИНФОРМАЦИЮ]
-
 Учти культурные особенности и местную специфику.
-
 Задача: [ДЕТАЛЬНОЕ ОПИСАНИЕ]</div>
                                 <button class="copy-btn" onclick="copyPrompt('qwen')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -898,7 +791,96 @@
                     </div>
                 </div>
             </div>
+            <!-- Kimi AI -->
+            <div class="ai-card" id="kimi-card">
+                <div class="ai-card-header" onclick="toggleCard('kimi')">
+                    <div class="ai-logo" style="background: white; padding: 4px;">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_O2J-zz789RPfksKt3tyDxlqLGBJUnI9q3IjjIBV6JidRtpaCdoJl1cu8vm1jtKVoZfg&usqp=CAU" 
+                             alt="Kimi AI" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <div class="ai-info">
+                        <h3 class="ai-name">Kimi AI</h3>
+                        <p class="ai-description">Интеллектуальный ассистент от Moonshot AI с поддержкой длинного контекста</p>
+                    </div>
+                    <svg class="ai-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="ai-content">
+                    <div class="ai-content-inner">
+                        <div class="tabs">
+                            <button class="tab-button active" onclick="switchTab('kimi', 'info')">Инфо</button>
+                            <button class="tab-button" onclick="switchTab('kimi', 'lifehack')">Лайфхак</button>
+                        </div>
+                        <div class="tab-content active" id="kimi-info">
+                            <div class="content-block">
+                                <a href="https://www.kimi.com/" target="_blank" class="use-btn">
+                                    <span>Открыть Kimi AI</span>
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="content-block">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        <div class="info-text">
+                                            <strong>Возможности:</strong> Анализ и генерация длинных текстов (до 200K токенов), чтение PDF/Word/Excel, суммаризация документов, исследовательские задачи, помощь в обучении
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                        <div class="info-text">
+                                            <strong>Особенности:</strong> Поддержка загрузки файлов, уникальная способность работать с огромными объемами текста, идеальна для научных и исследовательских задач, имеет режим "Исследователь"
+                                        </div>
+                                    </div>
+                                    <div class="vpn-status vpn-not-required">
+                                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                        </svg>
+                                        VPN не требуется
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="kimi-lifehack">
+                            <div class="content-block prompt-block">
+                                <h4 class="block-title">
+                                    <span class="icon">💡</span>
+                                    Исследовательский промт
+                                </h4>
+                                <div class="prompt-text">Ты — эксперт-исследователь в области [УКАЖИ ОБЛАСТЬ]. Твоя задача — провести глубокий анализ темы "[НАЗВАНИЕ ТЕМЫ]" и подготовить исчерпывающий отчет.
 
+Требования:
+1. Проанализируй исторический контекст и текущее состояние вопроса.
+2. Выдели ключевые тренды, вызовы и возможности.
+3. Приведи не менее 3 авторитетных источников (с пояснением их значимости).
+4. Предложи практические рекомендации для [ЦЕЛЕВАЯ АУДИТОРИЯ].
+5. Сформулируй 5 перспективных направлений для будущих исследований.
+
+Формат вывода:
+- Краткое резюме (не более 200 слов)
+- Детальный анализ с подзаголовками
+- Выводы и рекомендации
+- Список источников с комментариями
+
+Будь максимально глубоким, объективным и опирайся на факты. Избегай общих фраз.</div>
+                                <button class="copy-btn" onclick="copyPrompt('kimi')">
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                    Копировать промт
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- YandexGPT -->
             <div class="ai-card" id="yandexgpt-card">
                 <div class="ai-card-header" onclick="toggleCard('yandexgpt')">
@@ -914,14 +896,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('yandexgpt', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('yandexgpt', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="yandexgpt-info">
                             <div class="content-block">
                                 <a href="https://alice.yandex.ru/?utm_source=yagpt_land&utm_campaign=button" target="_blank" class="use-btn">
@@ -931,7 +911,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -959,7 +938,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="yandexgpt-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -967,19 +945,15 @@
                                     Русскоязычный промт
                                 </h4>
                                 <div class="prompt-text">Привет! Мне нужна помощь с [ТВОЯ ЗАДАЧА].
-
 Контекст задачи:
 - Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ/ИСПОЛЬЗОВАТЬ]
 - Формат результата: [КАК ДОЛЖЕН ВЫГЛЯДЕТЬ РЕЗУЛЬТАТ]
 - Особые требования: [СПЕЦИФИЧЕСКИЕ ПОЖЕЛАНИЯ]
-
 Дополнительная информация:
 - Срок выполнения: [КОГДА НУЖНО]
 - Объем работы: [СКОЛЬКО ТЕКСТА/МАТЕРИАЛА]
 - Стиль изложения: [ОФИЦИАЛЬНЫЙ/РАЗГОВОРНЫЙ/ТВОРЧЕСКИЙ]
-
 Пожалуйста, учти российские реалии и культурные особенности при подготовке ответа.
-
 Задача: [ПОДРОБНОЕ ОПИСАНИЕ ТОГО, ЧТО НУЖНО СДЕЛАТЬ]</div>
                                 <button class="copy-btn" onclick="copyPrompt('yandexgpt')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -992,7 +966,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- GigaChat -->
             <div class="ai-card" id="gigachat-card">
                 <div class="ai-card-header" onclick="toggleCard('gigachat')">
@@ -1008,14 +981,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('gigachat', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('gigachat', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="gigachat-info">
                             <div class="content-block">
                                 <a href="https://giga.chat/" target="_blank" class="use-btn">
@@ -1025,7 +996,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -1053,7 +1023,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="gigachat-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -1061,20 +1030,16 @@
                                     Бизнес-промт
                                 </h4>
                                 <div class="prompt-text">Задача: [ОПИШИ БИЗНЕС-ЗАДАЧУ ИЛИ ПРОЕКТ]
-
 Исходные данные:
 - Отрасль/сфера деятельности: [УКАЖИ ОБЛАСТЬ]
 - Целевая аудитория: [КТО ТВОИ КЛИЕНТЫ/ПОЛЬЗОВАТЕЛИ]
 - Текущая ситуация: [ЧТО ЕСТЬ СЕЙЧАС]
 - Желаемый результат: [ЧЕГО ХОЧЕШЬ ДОСТИЧЬ]
-
 Ограничения:
 - Бюджет: [ЕСЛИ АКТУАЛЬНО]
 - Временные рамки: [СРОКИ]
 - Особые требования: [СПЕЦИФИЧЕСКИЕ УСЛОВИЯ]
-
 Прошу подготовить детальный анализ с практическими рекомендациями. Учти российские бизнес-реалии и законодательство.
-
 Ожидаю конкретные шаги для реализации.</div>
                                 <button class="copy-btn" onclick="copyPrompt('gigachat')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1087,7 +1052,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Claude -->
             <div class="ai-card" id="claude-card">
                 <div class="ai-card-header" onclick="toggleCard('claude')">
@@ -1103,14 +1067,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('claude', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('claude', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="claude-info">
                             <div class="content-block">
                                 <a href="https://claude.ai" target="_blank" class="use-btn">
@@ -1120,7 +1082,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -1148,7 +1109,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="claude-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -1156,16 +1116,12 @@
                                     Аналитический промт
                                 </h4>
                                 <div class="prompt-text">Привет! Я работаю над [ПРОЕКТ/ЗАДАЧА]. 
-
 Мне нужна помощь с [КОНКРЕТНАЯ ЗАДАЧА].
-
 Контекст:
 - Текущая ситуация: [ОПИШИ]
 - Ограничения: [УКАЖИ ЕСЛИ ЕСТЬ]
 - Что уже пробовал: [ПРЕДЫДУЩИЕ ПОПЫТКИ]
-
 Ожидаемый результат: [ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
-
 Будь максимально практичным и подробным.</div>
                                 <button class="copy-btn" onclick="copyPrompt('claude')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1178,7 +1134,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Grok -->
             <div class="ai-card" id="grok-card">
                 <div class="ai-card-header" onclick="toggleCard('grok')">
@@ -1194,14 +1149,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                
                 <div class="ai-content">
                     <div class="ai-content-inner">
                         <div class="tabs">
                             <button class="tab-button active" onclick="switchTab('grok', 'info')">Инфо</button>
                             <button class="tab-button" onclick="switchTab('grok', 'lifehack')">Лайфхак</button>
                         </div>
-
                         <div class="tab-content active" id="grok-info">
                             <div class="content-block">
                                 <a href="https://grok.com" target="_blank" class="use-btn">
@@ -1211,7 +1164,6 @@
                                     </svg>
                                 </a>
                             </div>
-
                             <div class="content-block">
                                 <div class="info-grid">
                                     <div class="info-item">
@@ -1239,7 +1191,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="tab-content" id="grok-lifehack">
                             <div class="content-block prompt-block">
                                 <h4 class="block-title">
@@ -1247,16 +1198,13 @@
                                     Актуальный промт
                                 </h4>
                                 <div class="prompt-text">Эй, Grok! Мне нужна твоя помощь с [ТЕМА/ЗАДАЧА].
-
 Что я хочу узнать:
 - [ОСНОВНОЙ ВОПРОС]
 - [ДОПОЛНИТЕЛЬНЫЕ ДЕТАЛИ]
-
 Можешь ли ты:
 1. Дать актуальную информацию
 2. Добавить свое мнение/взгляд
 3. Не забыть про юмор, если уместно
-
 Интересны как факты, так и твои инсайты!</div>
                                 <button class="copy-btn" onclick="copyPrompt('grok')">
                                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1271,23 +1219,18 @@
             </div>
         </div>
     </main>
-
     <script>
         function goBack() {
             window.history.back();
         }
-
         function toggleCard(cardName) {
             const card = document.getElementById(cardName + '-card');
             const isExpanded = card.classList.contains('expanded');
-            
             // Закрыть все карточки
             document.querySelectorAll('.ai-card').forEach(c => c.classList.remove('expanded'));
-            
             // Если карточка не была открыта, открываем её
             if (!isExpanded) {
                 card.classList.add('expanded');
-                
                 // Плавный скролл к карточке
                 setTimeout(() => {
                     card.scrollIntoView({ 
@@ -1297,133 +1240,108 @@
                 }, 100);
             }
         }
-
         function switchTab(aiName, tabName) {
             // Переключение кнопок табов
             const card = document.getElementById(aiName + '-card');
             const tabButtons = card.querySelectorAll('.tab-button');
             tabButtons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
             // Переключение контента табов
             const tabContents = card.querySelectorAll('.tab-content');
             tabContents.forEach(content => content.classList.remove('active'));
             document.getElementById(`${aiName}-${tabName}`).classList.add('active');
         }
-
         const prompts = {
             'chatgpt': `Ты эксперт в [ТВОЯ ТЕМА]. Мне нужно [ТВОЯ ЗАДАЧА]. 
-
 Учти следующее:
 - Будь конкретным и детальным
 - Приведи примеры где возможно
 - Структурируй ответ для удобства чтения
-
 Моя задача: [ОПИШИ ЗАДАЧУ ПОДРОБНО]`,
-
             'deepseek': `Задача: [ОПИШИ ЗАДАЧУ]
-
 Требования:
 1. Пошаговое решение
 2. Объяснение каждого этапа
 3. Проверка результата
 4. Альтернативные подходы (если есть)
-
 Контекст: [ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ]
-
 Ожидаю максимально точный и проработанный ответ.`,
-
             'mixtral': `Роль: [УКАЖИ РОЛЬ - например "креативный писатель" или "аналитик"]
-
 Задача: [ТВОЯ ЗАДАЧА]
-
 Стиль: [УКАЖИ СТИЛЬ - формальный/неформальный/творческий]
-
 Аудитория: [ДЛЯ КОГО ДЕЛАЕШЬ]
-
 Дополнительные требования:
 - [ТРЕБОВАНИЕ 1]
 - [ТРЕБОВАНИЕ 2]
-
 Приступай!`,
-
             'qwen': `Контекст: [ОПИШИ СИТУАЦИЮ/БИЗНЕС-ЗАДАЧУ]
-
 Цель: [ЧТО НУЖНО ДОСТИЧЬ]
-
 Параметры:
 - Язык ответа: [УКАЖИ ЯЗЫК]
 - Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ]
 - Формат: [КАК ПОДАТЬ ИНФОРМАЦИЮ]
-
 Учти культурные особенности и местную специфику.
-
 Задача: [ДЕТАЛЬНОЕ ОПИСАНИЕ]`,
+            'kimi': `Ты — эксперт-исследователь в области [УКАЖИ ОБЛАСТЬ]. Твоя задача — провести глубокий анализ темы "[НАЗВАНИЕ ТЕМЫ]" и подготовить исчерпывающий отчет.
 
+Требования:
+1. Проанализируй исторический контекст и текущее состояние вопроса.
+2. Выдели ключевые тренды, вызовы и возможности.
+3. Приведи не менее 3 авторитетных источников (с пояснением их значимости).
+4. Предложи практические рекомендации для [ЦЕЛЕВАЯ АУДИТОРИЯ].
+5. Сформулируй 5 перспективных направлений для будущих исследований.
+
+Формат вывода:
+- Краткое резюме (не более 200 слов)
+- Детальный анализ с подзаголовками
+- Выводы и рекомендации
+- Список источников с комментариями
+
+Будь максимально глубоким, объективным и опирайся на факты. Избегай общих фраз.`,
             'claude': `Привет! Я работаю над [ПРОЕКТ/ЗАДАЧА]. 
-
 Мне нужна помощь с [КОНКРЕТНАЯ ЗАДАЧА].
-
 Контекст:
 - Текущая ситуация: [ОПИШИ]
 - Ограничения: [УКАЖИ ЕСЛИ ЕСТЬ]
 - Что уже пробовал: [ПРЕДЫДУЩИЕ ПОПЫТКИ]
-
 Ожидаемый результат: [ЧТО ХОЧЕШЬ ПОЛУЧИТЬ]
-
 Будь максимально практичным и подробным.`,
-
             'grok': `Эй, Grok! Мне нужна твоя помощь с [ТЕМА/ЗАДАЧА].
-
 Что я хочу узнать:
 - [ОСНОВНОЙ ВОПРОС]
 - [ДОПОЛНИТЕЛЬНЫЕ ДЕТАЛИ]
-
 Можешь ли ты:
 1. Дать актуальную информацию
 2. Добавить свое мнение/взгляд
 3. Не забыть про юмор, если уместно
-
 Интересны как факты, так и твои инсайты!`,
-
             'yandexgpt': `Привет! Мне нужна помощь с [ТВОЯ ЗАДАЧА].
-
 Контекст задачи:
 - Целевая аудитория: [КТО БУДЕТ ЧИТАТЬ/ИСПОЛЬЗОВАТЬ]
 - Формат результата: [КАК ДОЛЖЕН ВЫГЛЯДЕТЬ РЕЗУЛЬТАТ]
 - Особые требования: [СПЕЦИФИЧЕСКИЕ ПОЖЕЛАНИЯ]
-
 Дополнительная информация:
 - Срок выполнения: [КОГДА НУЖНО]
 - Объем работы: [СКОЛЬКО ТЕКСТА/МАТЕРИАЛА]
 - Стиль изложения: [ОФИЦИАЛЬНЫЙ/РАЗГОВОРНЫЙ/ТВОРЧЕСКИЙ]
-
 Пожалуйста, учти российские реалии и культурные особенности при подготовке ответа.
-
 Задача: [ПОДРОБНОЕ ОПИСАНИЕ ТОГО, ЧТО НУЖНО СДЕЛАТЬ]`,
-
             'gigachat': `Задача: [ОПИШИ БИЗНЕС-ЗАДАЧУ ИЛИ ПРОЕКТ]
-
 Исходные данные:
 - Отрасль/сфера деятельности: [УКАЖИ ОБЛАСТЬ]
 - Целевая аудитория: [КТО ТВОИ КЛИЕНТЫ/ПОЛЬЗОВАТЕЛИ]
 - Текущая ситуация: [ЧТО ЕСТЬ СЕЙЧАС]
 - Желаемый результат: [ЧЕГО ХОЧЕШЬ ДОСТИЧЬ]
-
 Ограничения:
 - Бюджет: [ЕСЛИ АКТУАЛЬНО]
 - Временные рамки: [СРОКИ]
 - Особые требования: [СПЕЦИФИЧЕСКИЕ УСЛОВИЯ]
-
 Прошу подготовить детальный анализ с практическими рекомендациями. Учти российские бизнес-реалии и законодательство.
-
 Ожидаю конкретные шаги для реализации.`
         };
-
         function copyPrompt(aiName) {
             const prompt = prompts[aiName];
             const button = event.target.closest('.copy-btn');
-            
             navigator.clipboard.writeText(prompt).then(() => {
                 const originalText = button.innerHTML;
                 button.innerHTML = `
@@ -1433,7 +1351,6 @@
                     Скопировано!
                 `;
                 button.classList.add('copied');
-                
                 setTimeout(() => {
                     button.innerHTML = originalText;
                     button.classList.remove('copied');
@@ -1443,14 +1360,12 @@
                 alert('Не удалось скопировать промт');
             });
         }
-
         // Анимация появления карточек
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.ai-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
-                
                 setTimeout(() => {
                     card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                     card.style.opacity = '1';
@@ -1458,14 +1373,12 @@
                 }, index * 150);
             });
         });
-
         // Закрытие карточек при клике вне их
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.ai-card')) {
                 document.querySelectorAll('.ai-card').forEach(c => c.classList.remove('expanded'));
             }
         });
-
         // Закрытие карточек при нажатии Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
