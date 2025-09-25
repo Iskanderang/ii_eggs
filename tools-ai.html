@@ -3,37 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Другие инструменты - Навигатор ИИшницы</title>
-    <meta name="description" content="Страница в разработке - следите за обновлениями в канале ИИшница">
-    
+    <title>Браузеры и поиск - Навигатор ИИшницы</title>
+    <meta name="description" content="AI-браузеры и инструменты поиска">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
-            --primary: #fa709a;
-            --primary-dark: #fee140;
-            --secondary: #ffecd2;
             --background: #0A0E27;
-            --surface: #151935;
-            --surface-light: #1E2347;
             --text-primary: #FFFFFF;
             --text-secondary: #94A3B8;
-            --gradient-primary: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --accent: #ff9a9e;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
             background: var(--background);
             color: var(--text-primary);
             min-height: 100vh;
+            overflow-x: hidden;
             position: relative;
+            padding: 40px 20px;
         }
-
         /* Animated Background */
         body::before {
             content: '';
@@ -43,22 +34,111 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(250, 112, 154, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(254, 225, 64, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 154, 158, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(94, 23, 235, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(240, 147, 251, 0.2) 0%, transparent 50%);
             z-index: -1;
-            animation: float 25s ease-in-out infinite;
+            animation: float 20s ease-in-out infinite;
         }
-
         @keyframes float {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-15px, -15px) rotate(0.5deg); }
-            66% { transform: translate(15px, -10px) rotate(-0.5deg); }
+            33% { transform: translate(-20px, -20px) rotate(1deg); }
+            66% { transform: translate(20px, -10px) rotate(-1deg); }
         }
-
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Browser Cards Grid */
+        .browsers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Browser Card — Базовые параметры */
+        .browser-card {
+            border-radius: 20px;
+            padding: 24px; /* ← Уменьшено на 20%: было 30px */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg);
+            border-color: var(--card-border);
+        }
+        /* Верхняя полоса при наведении */
+        .browser-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-hover-top);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .browser-card:hover::before {
+            opacity: 1;
+        }
+        .browser-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--card-shadow);
+        }
+        /* Browser Logo — ФОН УБРАН, СДЕЛАН ПРОЗРАЧНЫМ */
+        .browser-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            /* background: var(--card-logo-gradient); ← УДАЛЕНО! Логотип теперь без фона */
+        }
+        .browser-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        .browser-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        .browser-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        /* Details Button */
+        .details-btn {
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+            background: var(--card-button-gradient);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+        }
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
         /* Header */
         .header {
-            padding: 20px;
+            padding: 20px 0;
             display: flex;
             align-items: center;
             gap: 20px;
@@ -69,9 +149,8 @@
             z-index: 100;
             background: rgba(10, 14, 39, 0.8);
         }
-
         .back-btn {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, #fa709a, #fee140);
             border: none;
             color: white;
             width: 40px;
@@ -83,181 +162,382 @@
             justify-content: center;
             transition: transform 0.3s ease;
         }
-
         .back-btn:hover {
             transform: scale(1.05);
         }
-
         .category-header {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
         .category-icon-large {
             width: 50px;
             height: 50px;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, #fa709a, #fee140);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 25px;
         }
-
         .category-info h1 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, #fa709a, #fee140);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 5px;
         }
-
         .category-info .subtitle {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: 400;
         }
-
-        /* Main Container */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        /* Development Message */
-        .dev-message {
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 40px 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dev-message::before {
-            content: '';
-            position: absolute;
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
-
-        .dev-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-primary);
-            border-radius: 20px;
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Modal Content */
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            background: #151935;
+            border-radius: 25px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+        }
+        .modal-overlay.active .modal-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        /* Modal Header */
+        .modal-header {
+            background: #1E2347;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .modal-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 25px;
-            animation: pulse 2s ease-in-out infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .modal-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
         }
-
-        .dev-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dev-description {
-            color: var(--text-secondary);
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* Telegram Channel Link */
-        .telegram-link {
-            background: var(--gradient-primary);
-            color: white;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 12px;
-            font-size: 16px;
+        .modal-browser-name {
+            font-size: 24px;
             font-weight: 600;
-            display: inline-flex;
+        }
+        .close-modal {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-bottom: 20px;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
-
-        .telegram-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(250, 112, 154, 0.4);
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
         }
-
-        .telegram-icon {
-            width: 24px;
-            height: 24px;
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            padding: 20px 25px 0;
+            background: #151935;
         }
-
-        .coming-soon {
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
             color: var(--text-secondary);
             font-size: 14px;
-            margin-top: 20px;
-            opacity: 0.8;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 12px 12px 0 0;
+            transition: all 0.3s ease;
+            position: relative;
         }
-
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .tab-btn.active {
+            background: #1E2347;
+            color: white;
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        /* Tab Content */
+        .tab-content {
+            padding: 25px;
+            background: #151935;
+            overflow-y: auto;
+            max-height: calc(85vh - 200px);
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Description Tab */
+        .description-content h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .description-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .feature-item {
+            background: #1E2347;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+        .feature-icon {
+            font-size: 20px;
+            margin-top: 2px;
+        }
+        .feature-text {
+            flex: 1;
+        }
+        .feature-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .feature-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        /* Download Tab */
+        .download-content {
+            text-align: center;
+            padding: 30px;
+        }
+        .download-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .download-desc {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 15px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+        /* Platforms Row */
+        .platforms-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 5px 0;
+            scrollbar-width: none;
+        }
+        .platforms-row::-webkit-scrollbar {
+            display: none;
+        }
+        .platforms-row img {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+        /* Web Note */
+        .web-note {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .web-note img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        /* Guide Tab */
+        .guide-content {
+            padding: 20px 0;
+        }
+        .guide-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: #1E2347;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 55px;
+        }
+        .guide-step-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .guide-step-content {
+            flex: 1;
+        }
+        .guide-step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+        .guide-step-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
         /* Mobile Styles */
         @media (max-width: 768px) {
-            .header {
-                padding: 15px;
-                gap: 15px;
+            .browsers-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-
-            .category-icon-large {
-                width: 40px;
-                height: 40px;
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .tabs {
+                padding: 15px 20px 0;
+            }
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            .modal-header {
+                padding: 20px;
+            }
+            .modal-browser-name {
                 font-size: 20px;
             }
-
-            .category-info h1 {
-                font-size: 24px;
+            .guide-step {
+                padding-left: 45px;
             }
-
-            .container {
-                padding: 40px 15px;
+            .guide-step-icon {
+                left: 15px;
+                width: 25px;
+                height: 25px;
+                font-size: 20px;
             }
-
-            .dev-message {
-                padding: 30px 20px;
+        }
+        @media (max-width: 480px) {
+            .browser-card {
+                padding: 25px;
             }
-
-            .dev-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 35px;
+            .browser-logo {
+                width: 50px;
+                height: 50px;
             }
-
-            .dev-title {
-                font-size: 24px;
+            .browser-name {
+                font-size: 18px;
             }
-
-            .dev-description {
-                font-size: 15px;
+            .tabs {
+                gap: 2px;
             }
-
-            .telegram-link {
-                padding: 12px 20px;
-                font-size: 15px;
+            .tab-btn {
+                padding: 8px 12px;
+                font-size: 12px;
             }
         }
     </style>
@@ -269,53 +549,420 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
         </button>
-        
         <div class="category-header">
-            <div class="category-icon-large">🛠️</div>
+            <div class="category-icon-large">🔍</div>
             <div class="category-info">
-                <h1>Другие инструменты</h1>
-                <p class="subtitle">Специализированные AI для разных задач</p>
+                <h1>Браузеры и поиск</h1>
+                <p class="subtitle">AI-браузеры для умного веб-серфинга</p>
             </div>
         </div>
     </header>
-
     <main class="container">
-        <div class="dev-message">
-            <div class="dev-icon">🚧</div>
-            <h2 class="dev-title">Страница в разработке</h2>
-            <p class="dev-description">
-                Формируем каталог специализированных AI-инструментов. 
-                Здесь будут GitHub Copilot, Notion AI, Figma AI и множество других полезных решений!
-            </p>
-            
-            <a href="https://t.me/ii_eggs" target="_blank" class="telegram-link">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Telegram_2019_simple_logo.svg/60px-Telegram_2019_simple_logo.svg.png" 
-                     alt="Telegram" class="telegram-icon">
-                Канал "ИИшница"
-            </a>
-            
-            <p class="coming-soon">
-                📢 Следите за обновлениями в нашем Telegram-канале
-            </p>
+        <div class="browsers-grid">
+            <!-- Browser 1 - Perplexity -->
+            <div class="browser-card" style="
+                --card-bg: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(79, 70, 229, 0.1));
+                --card-border: rgba(147, 51, 234, 0.2);
+                --card-hover-top: linear-gradient(135deg, #9333ea, #4f46e5);
+                --card-logo-gradient: linear-gradient(135deg, #9333ea, #4f46e5);
+                --card-button-gradient: linear-gradient(135deg, #9333ea, #4f46e5);
+                --card-shadow: rgba(147, 51, 234, 0.2);
+            ">
+                <div class="browser-logo">
+                    <img src="images/logo/perplexity.png" alt="Perplexity AI" loading="lazy">
+                </div>
+                <h3 class="browser-name">Perplexity AI</h3>
+                <p class="browser-description">
+                    Поисковик с ИИ, который дает точные ответы с ссылками на источники. Идеален для учебы и исследований.
+                </p>
+                <button class="details-btn" onclick="openModal('perplexity')">Подробнее</button>
+            </div>
+            <!-- Browser 2 - DuckDuckGo -->
+            <div class="browser-card" style="
+                --card-bg: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+                --card-border: rgba(239, 68, 68, 0.2);
+                --card-hover-top: linear-gradient(135deg, #ef4444, #dc2626);
+                --card-logo-gradient: linear-gradient(135deg, #ef4444, #dc2626);
+                --card-button-gradient: linear-gradient(135deg, #ef4444, #dc2626);
+                --card-shadow: rgba(239, 68, 68, 0.2);
+            ">
+                <div class="browser-logo">
+                    <img src="images/logo/Duck.png" alt="DuckDuckGo" loading="lazy">
+                </div>
+                <h3 class="browser-name">DuckDuckGo</h3>
+                <p class="browser-description">
+                    Приватный браузер с ИИ-поиском. Блокирует трекеры и не собирает ваши данные.
+                </p>
+                <button class="details-btn" onclick="openModal('duckduckgo')">Подробнее</button>
+            </div>
+            <!-- Browser 3 - You.com -->
+            <div class="browser-card" style="
+                --card-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+                --card-border: rgba(59, 130, 246, 0.2);
+                --card-hover-top: linear-gradient(135deg, #3b82f6, #2563eb);
+                --card-logo-gradient: linear-gradient(135deg, #3b82f6, #2563eb);
+                --card-button-gradient: linear-gradient(135deg, #3b82f6, #2563eb);
+                --card-shadow: rgba(59, 130, 246, 0.2);
+            ">
+                <div class="browser-logo">
+                    <img src="images/logo/you.png" alt="You.com" loading="lazy">
+                </div>
+                <h3 class="browser-name">You.com</h3>
+                <p class="browser-description">
+                    Умный поиск, чат и генерация кода в одном окне. Выбор модели ИИ (GPT-4, Claude и др.).
+                </p>
+                <button class="details-btn" onclick="openModal('you')">Подробнее</button>
+            </div>
+            <!-- Browser 4 - Brave -->
+            <div class="browser-card" style="
+                --card-bg: linear-gradient(135deg, rgba(251, 146, 60, 0.1), rgba(249, 115, 22, 0.1));
+                --card-border: rgba(251, 146, 60, 0.2);
+                --card-hover-top: linear-gradient(135deg, #fb923c, #f97316);
+                --card-logo-gradient: linear-gradient(135deg, #fb923c, #f97316);
+                --card-button-gradient: linear-gradient(135deg, #fb923c, #f97316);
+                --card-shadow: rgba(251, 146, 60, 0.2);
+            ">
+                <div class="browser-logo">
+                    <img src="images/logo/Brave.png" alt="Brave Browser" loading="lazy">
+                </div>
+                <h3 class="browser-name">Brave Browser</h3>
+                <p class="browser-description">
+                    Быстрый и приватный браузер с ИИ-ассистентом Leo. Работает локально на вашем устройстве.
+                </p>
+                <button class="details-btn" onclick="openModal('brave')">Подробнее</button>
+            </div>
+            <!-- Browser 5 - Microsoft Edge -->
+            <div class="browser-card" style="
+                --card-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+                --card-border: rgba(16, 185, 129, 0.2);
+                --card-hover-top: linear-gradient(135deg, #10b981, #059669);
+                --card-logo-gradient: linear-gradient(135deg, #10b981, #059669);
+                --card-button-gradient: linear-gradient(135deg, #10b981, #059669);
+                --card-shadow: rgba(16, 185, 129, 0.2);
+            ">
+                <div class="browser-logo">
+                    <img src="images/logo/Edge.png" alt="Microsoft Edge" loading="lazy">
+                </div>
+                <h3 class="browser-name">Microsoft Edge</h3>
+                <p class="browser-description">
+                    Браузер с Copilot от Microsoft. Генерирует текст, изображения и помогает с Office.
+                </p>
+                <button class="details-btn" onclick="openModal('edge')">Подробнее</button>
+            </div>
+            <!-- Browser 6 - Opera One -->
+            <div class="browser-card" style="
+                --card-bg: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1));
+                --card-border: rgba(168, 85, 247, 0.2);
+                --card-hover-top: linear-gradient(135deg, #a855f7, #8b5cf6);
+                --card-logo-gradient: linear-gradient(135deg, #a855f7, #8b5cf6);
+                --card-button-gradient: linear-gradient(135deg, #a855f7, #8b5cf6);
+                --card-shadow: rgba(168, 85, 247, 0.2);
+            ">
+                <div class="browser-logo">
+                    <img src="images/logo/Opera.png" alt="Opera One" loading="lazy">
+                </div>
+                <h3 class="browser-name">Opera One</h3>
+                <p class="browser-description">
+                    Браузер с Aria — ИИ на базе ChatGPT. Чат, генерация контента и мессенджеры в боковой панели.
+                </p>
+                <button class="details-btn" onclick="openModal('opera')">Подробнее</button>
+            </div>
         </div>
     </main>
-
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="modal-logo" id="modalLogo">🌐</div>
+                    <h2 class="modal-browser-name" id="modalBrowserName">Arc Browser</h2>
+                </div>
+                <button class="close-modal" onclick="closeModal()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('description')">Описание</button>
+                <button class="tab-btn" onclick="switchTab('download')">Использовать</button>
+                <button class="tab-btn" onclick="switchTab('guide')">Это полезно</button>
+            </div>
+            <div class="tab-content">
+                <!-- Description Tab -->
+                <div class="tab-pane active" id="descriptionTab">
+                    <div class="description-content">
+                        <h3>О браузере</h3>
+                        <p id="modalDescription">
+                            Это не замена вашему основному браузеру, а умный помощник для сложных задач.
+                        </p>
+                        <h3>Основные возможности AI</h3>
+                        <div class="features-grid" id="featuresGrid">
+                            <!-- Features will be injected here -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Download Tab -->
+                <div class="tab-pane" id="downloadTab">
+                    <div class="download-content">
+                        <h3 class="download-title" id="downloadTitle">Использовать или скачать</h3>
+                        <p class="download-desc" id="downloadDesc">
+                            Начните прямо сейчас — большинство функций доступно без установки.
+                        </p>
+                        <a href="#" target="_blank" class="download-btn" id="downloadBtn" style="margin: 30px auto 40px; display: inline-block;">
+                            Перейти на сайт
+                        </a>
+                        <div class="platforms-row" id="platformIconsRow">
+                            <!-- Иконки будут вставлены сюда -->
+                        </div>
+                        <div class="web-note">
+                            <img src="images/servise/web.png" alt="Web">
+                            <span>Используйте прямо в браузере — без загрузки</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Guide Tab -->
+                <div class="tab-pane" id="guideTab">
+                    <div class="guide-content" id="guideContent">
+                        <!-- Гайд будет вставлен сюда через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
+        // Полные данные для всех браузеров
+        const browserData = {
+            perplexity: {
+                name: 'Perplexity AI',
+                logo: 'perplexity',
+                description: 'Ваш личный исследователь. Когда обычный поиск не справляется — Perplexity найдет и суммирует информацию из десятков источников, как будто у вас есть ассистент с PhD.',
+                url: 'https://www.perplexity.ai',
+                platforms: ['Web', 'iOS', 'Android'],
+                guide: [
+                    { icon: '🎯', title: 'Задавай сложные вопросы', desc: 'Не “как погода?”, а “Сравни подходы к ИИ в ЕС и США в 2024”. Получишь аналитику.' },
+                    { icon: '📚', title: 'Требуй источники', desc: 'Каждый ответ — с цитатами. Кликай по ссылкам, чтобы проверить или глубже изучить.' },
+                    { icon: '🔬', title: 'Переключайся в Academic Mode', desc: 'Для учебы и науки — только проверенные, академические источники. Никакой воды.' },
+                    { icon: '💬', title: 'Уточняй в диалоге', desc: '“А если рассматривать с точки зрения этики?” — Perplexity запомнит контекст и углубится.' },
+                    { icon: '🚀', title: 'Экспортируй в Notion или PDF', desc: 'Нашел идеальный ответ? Сохрани его в пару кликов — для отчета, статьи или шпаргалки.' }
+                ],
+                features: [
+                    { icon: '📚', title: 'Цитирование', desc: 'Каждый ответ с ссылками на источники' },
+                    { icon: '🎯', title: 'Режимы поиска', desc: 'Научный, Академический, Веб' },
+                    { icon: '🤖', title: 'Выбор модели', desc: 'GPT-4, Claude, Llama и др.' },
+                    { icon: '💡', title: 'Follow-up вопросы', desc: 'Уточняйте ответ в диалоге' }
+                ]
+            },
+            duckduckgo: {
+                name: 'DuckDuckGo',
+                logo: 'Duck',
+                description: 'Ваш цифровой невидимка. Когда вам нужно просто найти что-то, не оставляя следов. ИИ здесь работает на вас, а не на рекламодателей.',
+                url: 'https://duckduckgo.com',
+                platforms: ['Web', 'Windows', 'macOS', 'Linux', 'iOS', 'Android'],
+                guide: [
+                    { icon: '🕵️‍♂️', title: 'Включи режим невидимки', desc: 'Активируй «Усиленную защиту» — и ни один трекер не узнает, что ты здесь был.' },
+                    { icon: '⚡', title: 'Используй !bangs как профи', desc: '!g запрос — ищи в Google, !w — в Википедии, !yt — на YouTube. Экономь время!' },
+                    { icon: '📈', title: 'Следи за рейтингом приватности', desc: 'Щелкни по щиту в адресной строке — видишь зеленый? Ты в безопасности.' },
+                    { icon: '🚫', title: 'Забудь про куки-баннеры', desc: 'DuckDuckGo автоматически жмет «Отклонить все» — твое время слишком ценно.' },
+                    { icon: '🧠', title: 'Ищи без страха и стыда', desc: 'Никто не хранит твою историю. Спрашивай то, что стеснялся спросить раньше.' }
+                ],
+                features: [
+                    { icon: '🛡️', title: 'Нулевая трекинг', desc: 'Никто не знает, что вы ищете' },
+                    { icon: '🚫', title: 'Без рекламного профиля', desc: 'Реклама есть, но не персонализированная' },
+                    { icon: '⚡', title: 'Скорость', desc: 'Минималистичный интерфейс = молниеносная загрузка' },
+                    { icon: '🔒', title: 'Шифрование', desc: 'Защита на уровне соединения' }
+                ]
+            },
+            you: {
+                name: 'You.com',
+                logo: 'you',
+                description: 'Ваш универсальный цифровой швейцарский нож. Поиск, чат, генерация кода — все в одном окне. Идеален, когда нужно быстро переключаться между задачами.',
+                url: 'https://you.com',
+                platforms: ['Web', 'iOS', 'Android'],
+                guide: [
+                    { icon: '🤖', title: 'Запусти YouChat в поиске', desc: 'Не просто ищи — общайся. Получай ответы в формате диалога, как с умным другом.' },
+                    { icon: '👨‍💻', title: 'Генерируй код за секунды', desc: 'Введи “Напиши Python-скрипт для парсинга погоды” — получишь готовый код с пояснениями.' },
+                    { icon: '🎨', title: 'Создавай изображения из воздуха', desc: '“Нарисуй кота-киберпанка в дождевом Токио” — и YouCreate сделает это за тебя.' },
+                    { icon: '⚡', title: 'Выбирай модель под задачу', desc: 'GPT-4 для творчества, Claude для анализа, Mixtral для скорости. Ты — капитан.' },
+                    { icon: '🧠', title: 'Объединяй поиск и ИИ', desc: 'You.com ищет в сети ИИ-ответы — ты получаешь самое свежее, а не шаблон из 2023 года.' }
+                ],
+                features: [
+                    { icon: '💬', title: 'YouChat', desc: 'Чат с ИИ прямо в результатах поиска' },
+                    { icon: '👨‍💻', title: 'YouCode', desc: 'Генерация и объяснение кода' },
+                    { icon: '🎨', title: 'YouCreate', desc: 'Генерация изображений и текста' },
+                    { icon: '🧠', title: 'Модели на выбор', desc: 'GPT-4, Claude, Mixtral и др.' }
+                ]
+            },
+            brave: {
+                name: 'Brave Browser',
+                logo: 'Brave',
+                description: 'Ваш личный телохранитель в сети. Блокирует все трекеры по умолчанию, а встроенный ИИ Leo работает прямо на вашем устройстве — ваши данные никуда не уходят.',
+                url: 'https://search.brave.com/?lang=ru',
+                platforms: ['Web', 'Windows', 'macOS', 'Linux', 'iOS', 'Android'],
+                guide: [
+                    { icon: '🛡️', title: 'Включи защиту по умолчанию', desc: 'Brave блокирует трекеры сразу. Ты даже не заметишь — просто серфай спокойно.' },
+                    { icon: '🤖', title: 'Поговори с Leo оффлайн', desc: 'Твои данные не уходят в облако. Даже если интернет отключился — Leo все равно с тобой.' },
+                    { icon: '💰', title: 'Зарабатывай, просто серфя', desc: 'Включи Brave Rewards — получай BAT-токены за просмотр приватной рекламы. Это легко.' },
+                    { icon: '⚡', title: 'Ускорь YouTube и Twitter', desc: 'Brave встроенная блокировка рекламы = страницы грузятся в 3 раза быстрее. Твое время — твой ресурс.' },
+                    { icon: '🔒', title: 'Создай приватный кошелек', desc: 'Храни крипту прямо в браузере. Никаких сторонних приложений — всё под твоим контролем.' }
+                ],
+                features: [
+                    { icon: '🔒', title: 'Локальная обработка', desc: 'Данные не уходят на серверы' },
+                    { icon: '🧠', title: 'Поддержка LLM', desc: 'Mistral, Llama и другие модели' },
+                    { icon: '🛡️', title: 'Блокировка трекеров', desc: 'По умолчанию, без настройки' },
+                    { icon: '💰', title: 'Крипто-кошелек', desc: 'Встроенный кошелек для токенов' }
+                ]
+            },
+            edge: {
+                name: 'Microsoft Edge',
+                logo: 'Edge',
+                description: 'Ваш офисный ассистент нового поколения. Когда нужно не просто найти, а создать презентацию, документ или изображение — Copilot делает это за вас.',
+                url: 'https://www.microsoft.com/ru-ru/edge',
+                platforms: ['Web', 'Windows', 'macOS', 'Linux', 'iOS', 'Android'],
+                guide: [
+                    { icon: '🤖', title: 'Вызови Copilot сочетанием Ctrl+Shift+C', desc: 'Не ищи кнопку — вызови ИИ в любом месте. Пиши, редактируй, создавай — одним кликом.' },
+                    { icon: '🖼️', title: 'Генерируй изображения через DALL-E 3', desc: '“Создай изображение футуристического города в стиле Миядзаки” — получишь шедевр за 10 секунд.' },
+                    { icon: '📊', title: 'Связывай с Office одним кликом', desc: 'В Word — “Напиши отчет по встрече”. В Excel — “Построй график по этим данным”. Copilot всё сделает.' },
+                    { icon: '📚', title: 'Суммируй любую статью', desc: 'Открой длинную статью → нажми Copilot → “Кратко”. Получи суть за 5 секунд.' },
+                    { icon: '🎯', title: 'Настрой стиль ответа', desc: 'Выбирай: Creative (креативно), Balanced (сбалансированно), Precise (точно). Ты управляешь тоном.' }
+                ],
+                features: [
+                    { icon: '🤖', title: 'Copilot', desc: 'Мощный AI-помощник от Microsoft' },
+                    { icon: '🖼️', title: 'DALL-E 3', desc: 'Генерация изображений по описанию' },
+                    { icon: '📚', title: 'Режим чтения', desc: 'AI-суммаризация статей' },
+                    { icon: '📊', title: 'Интеграция', desc: 'Связь с Word, Excel, PowerPoint' }
+                ]
+            },
+            opera: {
+                name: 'Opera One',
+                logo: 'Opera',
+                description: 'Ваш мультимедийный центр. Объединяет браузер, чат с ИИ и все мессенджеры в одном месте. Идеален, чтобы не переключаться между вкладками и приложениями.',
+                url: 'https://www.opera.com/ru/one',
+                platforms: ['Web', 'Windows', 'macOS', 'Linux', 'Android', 'iOS'],
+                guide: [
+                    { icon: '🤖', title: 'Общайся с Aria без переключения вкладок', desc: 'Нажми “A” в боковой панели — и чат с ИИ всегда под рукой, даже когда смотришь YouTube.' },
+                    { icon: '📱', title: 'Объедини все мессенджеры', desc: 'Telegram, WhatsApp, VK — всё в одной боковой панели. Не переключайся между приложениями.' },
+                    { icon: '⚡', title: 'Генерируй посты и письма в 1 клик', desc: '“Напиши мотивационный пост про продуктивность” — Aria создаст, ты — опубликуешь.' },
+                    { icon: '🎨', title: 'Используй встроенный ИИ для дизайна', desc: 'Нужен баннер или иконка? Попроси Aria — она подскажет инструменты и идеи.' },
+                    { icon: '🧠', title: 'Создай свой ИИ-воркфлоу', desc: 'Чат → Генерация → Мессенджеры → Браузер. Всё в одном окне. Ты — дирижер цифрового оркестра.' }
+                ],
+                features: [
+                    { icon: '🤖', title: 'Aria AI', desc: 'Встроенный ассистент на базе GPT' },
+                    { icon: '💬', title: 'Чат в браузере', desc: 'Общение без переключения вкладок' },
+                    { icon: '🎨', title: 'Генерация контента', desc: 'Текст, код, идеи для постов' },
+                    { icon: '📱', title: 'Интеграция', desc: 'Telegram, WhatsApp, VK в боковой панели' }
+                ]
+            }
+        };
         function goBack() {
-            window.history.back();
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
         }
-
-        // Анимация появления
+        function openModal(browserId) {
+            const modal = document.getElementById('modalOverlay');
+            const data = browserData[browserId];
+            if (data) {
+                document.getElementById('modalLogo').innerHTML = `
+                    <img src="images/logo/${data.logo}.png" alt="${data.name}" 
+                         style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                `;
+                document.getElementById('modalBrowserName').textContent = data.name;
+                document.getElementById('modalDescription').textContent = data.description;
+                document.getElementById('downloadTitle').textContent = 'Использовать или скачать';
+                document.getElementById('downloadDesc').textContent = 'Начните прямо сейчас — большинство функций доступно без установки.';
+                document.getElementById('downloadBtn').href = data.url;
+                const iconsContainer = document.getElementById('platformIconsRow');
+                iconsContainer.innerHTML = '';
+                const platformIconMap = {
+                    'Web': 'images/servise/web.png',
+                    'Windows': 'images/servise/windows.png',
+                    'macOS': 'images/servise/macintosh.png',
+                    'Linux': 'images/servise/linux.png',
+                    'iOS': 'images/servise/ios.png',
+                    'Android': 'images/servise/android.png'
+                };
+                data.platforms
+                    .filter(p => p !== 'Web')
+                    .forEach(platform => {
+                        const iconSrc = platformIconMap[platform] || 'images/servise/download.png';
+                        iconsContainer.innerHTML += `
+                            <img src="${iconSrc}" alt="${platform}" style="width: 40px; height: 40px;">
+                        `;
+                    });
+                const guideContainer = document.getElementById('guideContent');
+                guideContainer.innerHTML = '';
+                data.guide.forEach(step => {
+                    guideContainer.innerHTML += `
+                        <div class="guide-step">
+                            <div class="guide-step-icon">${step.icon}</div>
+                            <div class="guide-step-content">
+                                <div class="guide-step-title">${step.title}</div>
+                                <div class="guide-step-desc">${step.desc}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                const featuresContainer = document.getElementById('featuresGrid');
+                featuresContainer.innerHTML = '';
+                data.features.forEach(feature => {
+                    featuresContainer.innerHTML += `
+                        <div class="feature-item">
+                            <span class="feature-icon">${feature.icon}</span>
+                            <div class="feature-text">
+                                <div class="feature-title">${feature.title}</div>
+                                <div class="feature-desc">${feature.desc}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            switchTab('description');
+        }
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            const targetButton = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
+                btn.getAttribute('onclick') === `switchTab('${tabName}')`
+            );
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+            const targetPane = document.getElementById(tabName + 'Tab');
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+        }
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
         document.addEventListener('DOMContentLoaded', () => {
-            const message = document.querySelector('.dev-message');
-            message.style.opacity = '0';
-            message.style.transform = 'translateY(30px)';
-            
-            setTimeout(() => {
-                message.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                message.style.opacity = '1';
-                message.style.transform = 'translateY(0)';
-            }, 200);
+            const cards = document.querySelectorAll('.browser-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
         });
     </script>
 </body>
